@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Tutor - Trina's English Tutors</title>
+    <meta name="description"
+        content="Apply to become a tutor on Trina's English Tutors. Share your expertise, set your own rates, and earn by teaching English online.">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth-page">
+        <!-- Left Panel: Branding -->
+        <div class="auth-branding">
+            <div class="auth-shape auth-shape-1"></div>
+            <div class="auth-shape auth-shape-2"></div>
+            <div class="auth-shape auth-shape-3"></div>
+
+            <div class="branding-content">
+                <a href="../../index.html" class="branding-logo">
+                    <span class="logo-badge">T</span>
+                    <span>Trina's English Tutors</span>
+                </a>
+
+                <h1 class="branding-title">Teach & Earn</h1>
+                <p class="branding-subtitle">Join our community of expert English tutors. Set your own schedule, choose
+                    your rates, and help students achieve fluency.</p>
+
+                <div class="branding-features">
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">💵</span>
+                        <span>Set your own hourly rate</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">🕐</span>
+                        <span>Flexible schedule — teach when you want</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">🌍</span>
+                        <span>Reach students from around the world</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">📈</span>
+                        <span>Monthly payouts with full transparency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Application Form -->
+        <div class="auth-form-panel" style="overflow-y: auto;">
+            <div class="auth-form-container" style="max-width: 500px;">
+                <!-- Application Form -->
+                <div id="applyFormSection">
+                    <div class="auth-form-header">
+                        <a href="../../index.html" class="back-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7" />
+                            </svg>
+                            Back to Home
+                        </a>
+                        <span class="badge badge-primary" style="margin-bottom: 1rem;">Tutor Application</span>
+                        <h2 class="auth-form-title">Apply to Teach</h2>
+                        <p class="auth-form-subtitle">Fill out the form below. Applications are reviewed within 48
+                            hours. Already have an account? <a href="login.html">Sign in</a></p>
+                    </div>
+
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step-dot active" id="dot1"></div>
+                        <div class="step-dot" id="dot2"></div>
+                        <div class="step-dot" id="dot3"></div>
+                    </div>
+
+                    <!-- Alert Container -->
+                    <div id="applyAlert" class="alert"></div>
+
+                    <!-- Step 1: Personal Info -->
+                    <form id="applyForm" novalidate>
+                        <div id="step1">
+                            <h3
+                                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
+                                Personal Information</h3>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="tutorFirstName">First Name</label>
+                                    <input type="text" id="tutorFirstName" class="form-input" placeholder="Jane"
+                                        autocomplete="given-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="tutorLastName">Last Name</label>
+                                    <input type="text" id="tutorLastName" class="form-input" placeholder="Smith"
+                                        autocomplete="family-name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorEmail">Email Address</label>
+                                <input type="email" id="tutorEmail" class="form-input" placeholder="jane@example.com"
+                                    autocomplete="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorPhone">Phone Number</label>
+                                <input type="tel" id="tutorPhone" class="form-input" placeholder="+1 (555) 000-0000"
+                                    autocomplete="tel">
+                                <div class="form-hint">Optional — for verification purposes</div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="tutorPassword">Password</label>
+                                    <div class="password-wrapper">
+                                        <input type="password" id="tutorPassword" class="form-input"
+                                            placeholder="Min 6 chars" autocomplete="new-password" required>
+                                        <button type="button" class="password-toggle"
+                                            aria-label="Toggle password visibility">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                <circle cx="12" cy="12" r="3" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="tutorConfirmPassword">Confirm</label>
+                                    <div class="password-wrapper">
+                                        <input type="password" id="tutorConfirmPassword" class="form-input"
+                                            placeholder="Re-enter" autocomplete="new-password" required>
+                                        <button type="button" class="password-toggle"
+                                            aria-label="Toggle password visibility">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                                <circle cx="12" cy="12" r="3" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" id="nextStep1" class="btn btn-primary btn-lg btn-full"
+                                onclick="goToStep(2)">
+                                Continue
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Professional Info -->
+                        <div id="step2" style="display: none;">
+                            <h3
+                                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
+                                Professional Details</h3>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorExperience">Teaching Experience</label>
+                                <select id="tutorExperience" class="form-input" required>
+                                    <option value="" disabled selected>Select your experience</option>
+                                    <option value="0-1">Less than 1 year</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10">5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Specialties</label>
+                                <div class="form-hint" style="margin-bottom: 0.75rem;">Select all that apply</div>
+                                <div class="qualifications-list" id="specialtiesContainer">
+                                    <span class="qualification-tag" data-value="conversation">Conversation</span>
+                                    <span class="qualification-tag" data-value="business">Business English</span>
+                                    <span class="qualification-tag" data-value="ielts">IELTS Prep</span>
+                                    <span class="qualification-tag" data-value="toefl">TOEFL Prep</span>
+                                    <span class="qualification-tag" data-value="grammar">Grammar</span>
+                                    <span class="qualification-tag" data-value="pronunciation">Pronunciation</span>
+                                    <span class="qualification-tag" data-value="writing">Writing</span>
+                                    <span class="qualification-tag" data-value="kids">Kids English</span>
+                                    <span class="qualification-tag" data-value="academic">Academic English</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorRate">Hourly Rate (USD)</label>
+                                <input type="number" id="tutorRate" class="form-input" placeholder="25" min="5"
+                                    max="200" required>
+                                <div class="form-hint">Platform takes a 20% commission per lesson</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Qualifications</label>
+                                <div class="qualifications-list" id="qualificationsContainer">
+                                    <span class="qualification-tag" data-value="tefl">TEFL</span>
+                                    <span class="qualification-tag" data-value="tesol">TESOL</span>
+                                    <span class="qualification-tag" data-value="celta">CELTA</span>
+                                    <span class="qualification-tag" data-value="delta">DELTA</span>
+                                    <span class="qualification-tag" data-value="degree">University Degree</span>
+                                    <span class="qualification-tag" data-value="native">Native Speaker</span>
+                                    <span class="qualification-tag" data-value="c1-certified">C1 Certified</span>
+                                    <span class="qualification-tag" data-value="c2-certified">C2 Certified</span>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(1)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round">
+                                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                                    </svg>
+                                    Back
+                                </button>
+                                <button type="button" class="btn btn-primary btn-lg" style="flex:2"
+                                    onclick="goToStep(3)">
+                                    Continue
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Bio & Submit -->
+                        <div id="step3" style="display: none;">
+                            <h3
+                                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
+                                About You</h3>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorBio">Bio / Introduction</label>
+                                <textarea id="tutorBio" class="form-input form-textarea"
+                                    placeholder="Tell us about your teaching style, experience, and what makes you a great tutor. This will be shown on your public profile."
+                                    required style="min-height: 150px;"></textarea>
+                                <div class="form-hint">Minimum 50 characters. Be authentic and engaging!</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-check">
+                                    <input type="checkbox" id="tutorAgreeTerms" required>
+                                    <span class="form-check-label">
+                                        I agree to the <a href="#" onclick="event.preventDefault()">Terms of
+                                            Service</a>, <a href="#" onclick="event.preventDefault()">Privacy
+                                            Policy</a>, and <a href="#" onclick="event.preventDefault()">Tutor
+                                            Agreement</a>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-check">
+                                    <input type="checkbox" id="tutorAgreeCommission" required>
+                                    <span class="form-check-label">
+                                        I understand and agree that the platform takes a 20% commission from each lesson
+                                        payment
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(2)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round">
+                                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                                    </svg>
+                                    Back
+                                </button>
+                                <button type="submit" id="applyBtn" class="btn btn-primary btn-lg" style="flex:2">
+                                    Submit Application
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div id="applySuccess" class="auth-success" style="display: none;">
+                    <div class="success-icon">📩</div>
+                    <h2>Application Submitted!</h2>
+                    <p>Thank you for applying to be a tutor at Trina's English Tutors. Our team will review your
+                        application within 48 hours. You'll receive an email with the result.</p>
+                    <a href="../../index.html" class="btn btn-primary btn-lg btn-full">Back to Home</a>
+                    <div style="margin-top: 1rem;">
+                        <a href="login.html" style="color: var(--primary); font-weight: 600; font-size: 0.9rem;">Already
+                            approved? Sign in →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- App Scripts -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        // Initialize Firebase
+        initFirebase();
+
+        // Current step
+        let currentStep = 1;
+
+        // Selected specialties and qualifications
+        let selectedSpecialties = [];
+        let selectedQualifications = [];
+
+        // Step navigation
+        function goToStep(step) {
+            hideAlert('applyAlert');
+
+            // Validate current step before moving forward
+            if (step > currentStep) {
+                if (!validateCurrentStep()) return;
+            }
+
+            // Hide all steps
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+
+            // Show target step
+            document.getElementById(`step${step}`).style.display = 'block';
+
+            // Update dots
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById(`dot${i}`);
+                dot.classList.remove('active', 'completed');
+                if (i < step) dot.classList.add('completed');
+                if (i === step) dot.classList.add('active');
+            }
+
+            currentStep = step;
+
+            // Scroll form panel to top
+            document.querySelector('.auth-form-panel').scrollTop = 0;
+        }
+
+        function validateCurrentStep() {
+            clearAllErrors('applyForm');
+
+            if (currentStep === 1) {
+                let valid = true;
+
+                if (!validateRequired(document.getElementById('tutorFirstName').value)) {
+                    showFieldError('tutorFirstName', 'Required');
+                    valid = false;
+                }
+                if (!validateRequired(document.getElementById('tutorLastName').value)) {
+                    showFieldError('tutorLastName', 'Required');
+                    valid = false;
+                }
+                if (!validateEmail(document.getElementById('tutorEmail').value)) {
+                    showFieldError('tutorEmail', 'Valid email required');
+                    valid = false;
+                }
+                const pw = document.getElementById('tutorPassword').value;
+                if (!validatePassword(pw)) {
+                    showFieldError('tutorPassword', 'Min 6 characters');
+                    valid = false;
+                }
+                if (pw !== document.getElementById('tutorConfirmPassword').value) {
+                    showFieldError('tutorConfirmPassword', 'Must match');
+                    valid = false;
+                }
+
+                return valid;
+            }
+
+            if (currentStep === 2) {
+                let valid = true;
+
+                if (!document.getElementById('tutorExperience').value) {
+                    showFieldError('tutorExperience', 'Please select your experience');
+                    valid = false;
+                }
+                if (selectedSpecialties.length === 0) {
+                    showAlert('applyAlert', 'Please select at least one specialty.', 'warning');
+                    valid = false;
+                }
+                if (!document.getElementById('tutorRate').value || parseFloat(document.getElementById('tutorRate').value) < 5) {
+                    showFieldError('tutorRate', 'Minimum $5/hour');
+                    valid = false;
+                }
+
+                return valid;
+            }
+
+            return true;
+        }
+
+        // Tag selection for specialties
+        document.getElementById('specialtiesContainer').addEventListener('click', (e) => {
+            const tag = e.target.closest('.qualification-tag');
+            if (!tag) return;
+
+            const value = tag.dataset.value;
+            tag.classList.toggle('selected');
+
+            if (selectedSpecialties.includes(value)) {
+                selectedSpecialties = selectedSpecialties.filter(s => s !== value);
+            } else {
+                selectedSpecialties.push(value);
+            }
+        });
+
+        // Tag selection for qualifications
+        document.getElementById('qualificationsContainer').addEventListener('click', (e) => {
+            const tag = e.target.closest('.qualification-tag');
+            if (!tag) return;
+
+            const value = tag.dataset.value;
+            tag.classList.toggle('selected');
+
+            if (selectedQualifications.includes(value)) {
+                selectedQualifications = selectedQualifications.filter(q => q !== value);
+            } else {
+                selectedQualifications.push(value);
+            }
+        });
+
+        // Form submit
+        const applyForm = document.getElementById('applyForm');
+        applyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert('applyAlert');
+
+            // Validate step 3
+            const bio = document.getElementById('tutorBio').value.trim();
+            if (bio.length < 50) {
+                showFieldError('tutorBio', 'Bio must be at least 50 characters');
+                return;
+            }
+            if (!document.getElementById('tutorAgreeTerms').checked) {
+                showAlert('applyAlert', 'Please agree to the Terms and Tutor Agreement.', 'warning');
+                return;
+            }
+            if (!document.getElementById('tutorAgreeCommission').checked) {
+                showAlert('applyAlert', 'Please acknowledge the commission structure.', 'warning');
+                return;
+            }
+
+            // Collect all data
+            const data = {
+                firstName: document.getElementById('tutorFirstName').value.trim(),
+                lastName: document.getElementById('tutorLastName').value.trim(),
+                email: document.getElementById('tutorEmail').value.trim(),
+                phone: document.getElementById('tutorPhone').value.trim(),
+                password: document.getElementById('tutorPassword').value,
+                experience: document.getElementById('tutorExperience').value,
+                specialties: selectedSpecialties,
+                qualifications: selectedQualifications,
+                hourlyRate: document.getElementById('tutorRate').value,
+                bio: bio
+            };
+
+            setButtonLoading('applyBtn', true);
+
+            const result = await submitTutorApplication(data);
+
+            if (result.success) {
+                document.getElementById('applyFormSection').style.display = 'none';
+                document.getElementById('applySuccess').style.display = 'block';
+                showToast('Application submitted!', 'success');
+            } else {
+                showAlert('applyAlert', result.error, 'error');
+                setButtonLoading('applyBtn', false);
+            }
+        });
+
+        // Clear errors on input
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', () => {
+                clearFieldError(input.id);
+                hideAlert('applyAlert');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Trina's English Tutors</title>
+    <meta name="description"
+        content="Sign up for Trina's English Tutors and start learning English with qualified C1 tutors today.">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth-page">
+        <!-- Left Panel: Branding -->
+        <div class="auth-branding">
+            <div class="auth-shape auth-shape-1"></div>
+            <div class="auth-shape auth-shape-2"></div>
+            <div class="auth-shape auth-shape-3"></div>
+
+            <div class="branding-content">
+                <a href="../../index.html" class="branding-logo">
+                    <span class="logo-badge">T</span>
+                    <span>Trina's English Tutors</span>
+                </a>
+
+                <h1 class="branding-title">Start Your Journey</h1>
+                <p class="branding-subtitle">Join thousands of students mastering English with personalized one-on-one
+                    lessons from certified C1 tutors.</p>
+
+                <div class="branding-features">
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">🎯</span>
+                        <span>Personalized learning plans</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">🌍</span>
+                        <span>Learn from anywhere in the world</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">💰</span>
+                        <span>Pay only when you book — no subscriptions</span>
+                    </div>
+                    <div class="branding-feature">
+                        <span class="branding-feature-icon">⭐</span>
+                        <span>4.9/5 average tutor rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Registration Form -->
+        <div class="auth-form-panel">
+            <div class="auth-form-container">
+                <!-- Form State -->
+                <div id="registerFormSection">
+                    <div class="auth-form-header">
+                        <a href="../../index.html" class="back-link">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7" />
+                            </svg>
+                            Back to Home
+                        </a>
+                        <h2 class="auth-form-title">Create Your Account</h2>
+                        <p class="auth-form-subtitle">Already have an account? <a href="login.html">Sign in</a></p>
+                    </div>
+
+                    <!-- Alert Container -->
+                    <div id="registerAlert" class="alert"></div>
+
+                    <!-- Google Sign-Up -->
+                    <button type="button" id="googleSignUpBtn" class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                                fill="#4285F4" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853" />
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                fill="#FBBC05" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                fill="#EA4335" />
+                        </svg>
+                        Sign up with Google
+                    </button>
+
+                    <div class="divider">or sign up with email</div>
+
+                    <!-- Registration Form -->
+                    <form id="registerForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-input" placeholder="John"
+                                    autocomplete="given-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-input" placeholder="Doe"
+                                    autocomplete="family-name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com"
+                                autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="registerPassword">Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="registerPassword" class="form-input"
+                                    placeholder="At least 6 characters" autocomplete="new-password" required>
+                                <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="form-hint">Must be at least 6 characters</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="confirmPassword">Confirm Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="confirmPassword" class="form-input"
+                                    placeholder="Re-enter your password" autocomplete="new-password" required>
+                                <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-check">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="form-check-label">
+                                    I agree to the <a href="#" onclick="event.preventDefault()">Terms of Service</a> and
+                                    <a href="#" onclick="event.preventDefault()">Privacy Policy</a>
+                                </span>
+                            </label>
+                        </div>
+
+                        <button type="submit" id="registerBtn" class="btn btn-primary btn-lg btn-full">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="auth-form-footer">
+                        <p>Are you a tutor? <a href="tutor-apply.html">Apply to teach</a></p>
+                    </div>
+                </div>
+
+                <!-- Success State -->
+                <div id="registerSuccess" class="auth-success" style="display: none;">
+                    <div class="success-icon">🎉</div>
+                    <h2>Account Created!</h2>
+                    <p>Welcome to Trina's English Tutors! Your account has been created successfully. You can now browse
+                        tutors and book your first lesson.</p>
+                    <a href="login.html" class="btn btn-primary btn-lg btn-full">Go to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- App Scripts -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/auth.js"></script>
+    <script src="../../js/utils.js"></script>
+
+    <script>
+        // Initialize Firebase
+        initFirebase();
+
+        // Redirect if already logged in
+        redirectIfLoggedIn();
+
+        // Registration Form Handler
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearAllErrors('registerForm');
+            hideAlert('registerAlert');
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+
+            // Validate
+            let hasErrors = false;
+
+            if (!validateRequired(firstName)) {
+                showFieldError('firstName', 'First name is required');
+                hasErrors = true;
+            }
+
+            if (!validateRequired(lastName)) {
+                showFieldError('lastName', 'Last name is required');
+                hasErrors = true;
+            }
+
+            if (!validateRequired(email)) {
+                showFieldError('registerEmail', 'Email is required');
+                hasErrors = true;
+            } else if (!validateEmail(email)) {
+                showFieldError('registerEmail', 'Please enter a valid email');
+                hasErrors = true;
+            }
+
+            if (!validateRequired(password)) {
+                showFieldError('registerPassword', 'Password is required');
+                hasErrors = true;
+            } else if (!validatePassword(password)) {
+                showFieldError('registerPassword', 'Password must be at least 6 characters');
+                hasErrors = true;
+            }
+
+            if (password !== confirmPassword) {
+                showFieldError('confirmPassword', 'Passwords do not match');
+                hasErrors = true;
+            }
+
+            if (!agreeTerms) {
+                showAlert('registerAlert', 'Please agree to the Terms of Service and Privacy Policy.', 'warning');
+                hasErrors = true;
+            }
+
+            if (hasErrors) return;
+
+            // Submit
+            setButtonLoading('registerBtn', true);
+
+            const result = await registerStudent(firstName, lastName, email, password);
+
+            if (result.success) {
+                document.getElementById('registerFormSection').style.display = 'none';
+                document.getElementById('registerSuccess').style.display = 'block';
+                showToast('Account created successfully!', 'success');
+            } else {
+                showAlert('registerAlert', result.error, 'error');
+                setButtonLoading('registerBtn', false);
+            }
+        });
+
+        // Google Sign-Up Handler
+        document.getElementById('googleSignUpBtn').addEventListener('click', async () => {
+            const result = await signInWithGoogle();
+            if (result.success) {
+                showToast('Account created! Redirecting...', 'success');
+                setTimeout(() => redirectToDashboard(result.role), 1000);
+            } else {
+                showAlert('registerAlert', result.error, 'error');
+            }
+        });
+
+        // Clear errors on input
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('input', () => {
+                clearFieldError(input.id);
+                hideAlert('registerAlert');
+            });
+        });
+    </script>
+</body>
+
+</html>
