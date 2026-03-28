@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>Contact — LEARN</title>
+    <meta name="description" content="Get in touch with the LEARN team.">
+    <link rel="icon" type="image/jpeg" href="../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <img src="../assets/logo.jpeg" alt="LEARN" class="logo-img">
+        </a>
+        <div class="nav-menu" id="navMenu">
+            <a href="../index.html#how-it-works" class="nav-link">How It Works</a>
+            <a href="find-tutor.html" class="nav-link">Tutors</a>
+            <a href="../index.html#pricing" class="nav-link">Pricing</a>
+            <div class="nav-cta-mobile">
+                <a href="auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+                <a href="auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main class="page-main">
+
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">Get in Touch</span>
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-subtitle">Have a question or need help? We're here for you.</p>
+        </div>
+    </div>
+
+    <div class="container content-narrow" style="padding-bottom: 5rem;">
+
+        <div class="contact-grid">
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <div class="contact-info-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contact-info-label">Email</div>
+                        <a href="mailto:hello@learnplatform.com" class="contact-info-value">hello@learnplatform.com</a>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contact-info-label">Response Time</div>
+                        <div class="contact-info-value">Within 24 hours</div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contact-info-label">Also check</div>
+                        <a href="faqs.html" class="contact-info-value">Our FAQs page</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrap">
+                <div id="contactFormSection">
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="contactName">Full Name</label>
+                                <input type="text" id="contactName" class="form-input" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactSubject">Subject</label>
+                            <select id="contactSubject" class="form-input" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="general">General Enquiry</option>
+                                <option value="student">Student Support</option>
+                                <option value="tutor">Tutor Application</option>
+                                <option value="payment">Payment Issue</option>
+                                <option value="technical">Technical Problem</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="contactMessage">Message</label>
+                            <textarea id="contactMessage" class="form-input form-textarea" placeholder="Tell us how we can help..." required style="min-height:140px;"></textarea>
+                        </div>
+                        <div id="contactAlert" class="alert"></div>
+                        <button type="submit" id="contactBtn" class="btn btn-primary btn-lg btn-full">Send Message</button>
+                    </form>
+                </div>
+                <div id="contactSuccess" style="display:none; text-align:center; padding: 3rem 1rem;">
+                    <div style="width:64px;height:64px;background:var(--success-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:800;margin-bottom:0.5rem;">Message Sent!</h2>
+                    <p style="color:var(--text-secondary);font-size:0.92rem;">Thanks for reaching out. We'll get back to you within 24 hours.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../assets/logo.jpeg" alt="LEARN" class="footer-logo-img" loading="lazy">
+                <p class="footer-desc">Connecting students with qualified C1 English tutors for real, measurable progress.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Students</h4>
+                <ul class="footer-links">
+                    <li><a href="find-tutor.html">Find a Tutor</a></li>
+                    <li><a href="../index.html#how-it-works">How It Works</a></li>
+                    <li><a href="../index.html#pricing">Pricing</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Tutors</h4>
+                <ul class="footer-links">
+                    <li><a href="auth/tutor-apply.html">Become a Tutor</a></li>
+                    <li><a href="#">Tutor Resources</a></li>
+                    <li><a href="#">Payment Info</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LEARN. All rights reserved.</p>
+            <p class="footer-dev">Developed by <a href="https://brelinx.com" target="_blank" rel="noopener noreferrer">Brelinx</a> &mdash; Web Development &amp; IT Solutions</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/nav.js" defer></script>
+<script defer>
+    // Contact form — simulated submit
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const subject = document.getElementById('contactSubject').value;
+        const message = document.getElementById('contactMessage').value.trim();
+        const alertEl = document.getElementById('contactAlert');
+
+        if (!name || !email || !subject || !message) {
+            alertEl.className = 'alert alert-error visible';
+            alertEl.innerHTML = '<span>Please fill in all fields.</span>';
+            return;
+        }
+        const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(email)) {
+            alertEl.className = 'alert alert-error visible';
+            alertEl.innerHTML = '<span>Please enter a valid email address.</span>';
+            return;
+        }
+
+        document.getElementById('contactFormSection').style.display = 'none';
+        document.getElementById('contactSuccess').style.display = 'block';
+    });
+</script>
+</body>
+</html>

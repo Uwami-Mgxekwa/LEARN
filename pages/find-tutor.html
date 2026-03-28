@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>Find a Tutor — LEARN</title>
+    <meta name="description" content="Browse verified C1 English tutors on LEARN. Filter by specialty, availability, and more.">
+    <link rel="icon" type="image/jpeg" href="../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-logo">
+            <img src="../assets/logo.jpeg" alt="LEARN" class="logo-img">
+        </a>
+        <div class="nav-menu" id="navMenu">
+            <a href="../index.html#how-it-works" class="nav-link">How It Works</a>
+            <a href="find-tutor.html" class="nav-link active">Tutors</a>
+            <a href="../index.html#pricing" class="nav-link">Pricing</a>
+            <div class="nav-cta-mobile">
+                <a href="auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+                <a href="auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<main class="page-main">
+
+    <!-- Page Header -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="section-label">Browse Tutors</span>
+            <h1 class="page-title">Find your perfect tutor</h1>
+            <p class="page-subtitle">All tutors are verified C1 level with real teaching experience.</p>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-bar">
+        <div class="container">
+            <div class="filters-inner">
+                <div class="search-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search by name or specialty...">
+                </div>
+                <div class="filter-chips">
+                    <button class="chip active" data-filter="all">All</button>
+                    <button class="chip" data-filter="conversation">Conversation</button>
+                    <button class="chip" data-filter="business">Business English</button>
+                    <button class="chip" data-filter="ielts">IELTS Prep</button>
+                    <button class="chip" data-filter="grammar">Grammar</button>
+                    <button class="chip" data-filter="kids">Kids English</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tutors Grid -->
+    <div class="container" style="padding-top: 2.5rem; padding-bottom: 5rem;">
+        <div class="tutors-grid" id="tutorsGrid">
+
+            <div class="tutor-card" data-specialty="conversation">
+                <div class="tutor-card-img-wrap">
+                    <img src="../assets/tutor1.jpg" alt="Sarah Johnson" loading="lazy">
+                </div>
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Sarah Johnson</div>
+                    <div class="tutor-specialty">Conversation &amp; Fluency</div>
+                    <div class="tutor-rating">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        5.0 <span class="rating-count">(142 reviews)</span>
+                    </div>
+                    <a href="auth/register.html" class="btn btn-primary btn-sm btn-full" style="margin-top:1rem;">Book a Lesson</a>
+                </div>
+            </div>
+
+            <div class="tutor-card" data-specialty="business">
+                <div class="tutor-card-img-wrap">
+                    <img src="../assets/tutor2.jpg" alt="Michael Park" loading="lazy">
+                </div>
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Michael Park</div>
+                    <div class="tutor-specialty">Business English</div>
+                    <div class="tutor-rating">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.9 <span class="rating-count">(98 reviews)</span>
+                    </div>
+                    <a href="auth/register.html" class="btn btn-primary btn-sm btn-full" style="margin-top:1rem;">Book a Lesson</a>
+                </div>
+            </div>
+
+            <div class="tutor-card" data-specialty="ielts">
+                <div class="tutor-card-img-wrap">
+                    <img src="../assets/tutor3.jpg" alt="Emma Chen" loading="lazy">
+                </div>
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Emma Chen</div>
+                    <div class="tutor-specialty">IELTS &amp; Exam Prep</div>
+                    <div class="tutor-rating">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        5.0 <span class="rating-count">(211 reviews)</span>
+                    </div>
+                    <a href="auth/register.html" class="btn btn-primary btn-sm btn-full" style="margin-top:1rem;">Book a Lesson</a>
+                </div>
+            </div>
+
+        </div>
+
+        <p id="noResults" class="no-results" style="display:none;">No tutors found matching your search.</p>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../assets/logo.jpeg" alt="LEARN" class="footer-logo-img" loading="lazy">
+                <p class="footer-desc">Connecting students with qualified C1 English tutors for real, measurable progress.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Students</h4>
+                <ul class="footer-links">
+                    <li><a href="find-tutor.html">Find a Tutor</a></li>
+                    <li><a href="../index.html#how-it-works">How It Works</a></li>
+                    <li><a href="../index.html#pricing">Pricing</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Tutors</h4>
+                <ul class="footer-links">
+                    <li><a href="auth/tutor-apply.html">Become a Tutor</a></li>
+                    <li><a href="#">Tutor Resources</a></li>
+                    <li><a href="#">Payment Info</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LEARN. All rights reserved.</p>
+            <p class="footer-dev">Developed by <a href="https://brelinx.com" target="_blank" rel="noopener noreferrer">Brelinx</a> &mdash; Web Development &amp; IT Solutions</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../js/nav.js" defer></script>
+<script defer>
+    // Filter chips
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.tutor-card');
+    const searchInput = document.getElementById('searchInput');
+    const noResults = document.getElementById('noResults');
+    let activeFilter = 'all';
+
+    function filterTutors() {
+        const query = searchInput.value.toLowerCase().trim();
+        let visible = 0;
+        cards.forEach(card => {
+            const specialty = card.dataset.specialty;
+            const name = card.querySelector('.tutor-name').textContent.toLowerCase();
+            const spec = card.querySelector('.tutor-specialty').textContent.toLowerCase();
+            const matchFilter = activeFilter === 'all' || specialty === activeFilter;
+            const matchSearch = !query || name.includes(query) || spec.includes(query);
+            const show = matchFilter && matchSearch;
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            activeFilter = chip.dataset.filter;
+            filterTutors();
+        });
+    });
+
+    searchInput.addEventListener('input', filterTutors);
+</script>
+</body>
+</html>
