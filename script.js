@@ -427,8 +427,10 @@ if (navMenu) {
 // Console Welcome Message
 // ===================================
 
-console.log('%c Welcome to LEARN! ', 'background: #8c3cdc; color: #fff; padding: 8px; font-size: 14px; font-weight: bold;');
+console.log('%c Welcome to LEARN! ', 'background: #8c3cdc; color: #fff; padding: 8px 16px; font-size: 14px; font-weight: bold; border-radius: 4px;');
 console.log('%c Master English with Expert C1 Tutors ', 'color: #8c3cdc; font-size: 12px;');
+console.log('%c Powered by Brelinx ', 'background: #18181b; color: #fff; padding: 4px 10px; font-size: 11px; font-weight: bold; border-radius: 4px;');
+console.log('%c Web Development & IT Solutions — brelinx.com ', 'color: #6b6b78; font-size: 11px;');
 
 // ===================================
 // Page Load Complete
