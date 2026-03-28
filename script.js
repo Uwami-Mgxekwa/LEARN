@@ -235,7 +235,7 @@ const updateFooterYear = () => {
     const yearElement = document.querySelector('.footer-bottom p');
     if (yearElement) {
         const currentYear = new Date().getFullYear();
-        yearElement.textContent = `© ${currentYear} Trina's English Tutors. All rights reserved.`;
+        yearElement.textContent = `© ${currentYear} LearnU. All rights reserved.`;
     }
 };
 
@@ -414,8 +414,8 @@ if (navMenu) {
 // Console Welcome Message
 // ===================================
 
-console.log('%c Welcome to Trina\'s English Tutors! ', 'background: #1a4d2e; color: #fff; padding: 8px; font-size: 14px; font-weight: bold;');
-console.log('%c Master English with Expert C1 Tutors ', 'color: #1a4d2e; font-size: 12px;');
+console.log('%c Welcome to LearnU! ', 'background: #8c3cdc; color: #fff; padding: 8px; font-size: 14px; font-weight: bold;');
+console.log('%c Master English with Expert C1 Tutors ', 'color: #8c3cdc; font-size: 12px;');
 
 // ===================================
 // Page Load Complete
