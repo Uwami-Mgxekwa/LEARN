@@ -414,7 +414,7 @@ if (navMenu) {
 // Console Welcome Message
 // ===================================
 
-console.log('%c Welcome to LearnU! ', 'background: #8c3cdc; color: #fff; padding: 8px; font-size: 14px; font-weight: bold;');
+console.log('%c Welcome to LEARN! ', 'background: #8c3cdc; color: #fff; padding: 8px; font-size: 14px; font-weight: bold;');
 console.log('%c Master English with Expert C1 Tutors ', 'color: #8c3cdc; font-size: 12px;');
 
 // ===================================

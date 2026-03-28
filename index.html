@@ -1,499 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnU - Master English with C1 Level Tutors</title>
-    <meta name="description"
-        content="Connect with qualified C1 English tutors on LearnU. Book personalized lessons, learn at your pace, and achieve fluency with expert guidance.">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap"
-        rel="stylesheet">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>LEARN — Master English with Expert Tutors</title>
+    <meta name="description" content="Book one-on-one English lessons with verified C1 tutors. Flexible scheduling, secure payments, real results.">
 
-<body>
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="assets/logo.jpeg" alt="LearnU" class="logo-img">
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="#tutors" class="nav-link">Our Tutors</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#testimonials" class="nav-link">Reviews</a>
-                <div class="nav-cta-mobile">
-                    <a href="pages/auth/login.html" class="btn-secondary">Login</a>
-                    <a href="pages/auth/register.html" class="btn-primary">Get Started</a>
-                </div>
-            </div>
-            <div class="nav-buttons">
-                <a href="pages/auth/login.html" class="btn-secondary">Login</a>
-                <a href="pages/auth/register.html" class="btn-primary">Get Started</a>
-            </div>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="assets/logo.jpeg">
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+    <!-- Preconnect for speed -->
+    <lin
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="/" class="nav-logo">
+            <img src="assets/logo.jpeg" alt="LEARN" class="logo-img">
+        </a>
+        <div class="nav-menu" id="navMenu">
+            <a href="#how-it-works" class="nav-link">How It Works</a>
+            <a href="#tutors" class="nav-link">Tutors</a>
+            <a href="#pricing" class="nav-link">Pricing</a>
+            <div class="nav-cta-mobile">
+                <a href="pages/auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+                <a href="pages/auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
         </div>
-        <div class="container">
+        <div class="nav-buttons">
+            <a href="pages/auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="pages/auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+<               <a href="pages/auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="pages/auth/login.html" class="btn btn-ghost btn-sm">Log in</a>
+            <a href="pages/auth/register.html" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-inner">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path
-                            d="M8 0L10.4721 5.52786L16 8L10.4721 10.4721L8 16L5.52786 10.4721L0 8L5.52786 5.52786L8 0Z"
-                            fill="currentColor" />
-                    </svg>
-                    <span>C1 Level Tutors Only</span>
+                <div class="hero-eyebrow">
+                    <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor" aria-hidden="true"><circle cx="4" cy="4" r="4"/></svg>
+                    C1 Verified Tutors Only
                 </div>
                 <h1 class="hero-title">
-                    Master English with
-                    <span class="highlight">Expert Tutors</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Connect with qualified C1 English tutors on LearnU for personalized lessons. Learn at your own pace, achieve
-                    fluency, and unlock new opportunities with one-on-one video sessions.
-                </p>
-                <div class="hero-buttons">
-                    <a href="pages/auth/register.html" class="btn-hero-primary">Find Your Tutor</a>
-                    <a href="#" class="btn-hero-secondary">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" />
-                            <path d="M8 7L13 10L8 13V7Z" fill="currentColor" />
-                        </svg>
-                        Watch How It Works
-                    </a>
+                    Learn English<br>with the <s
+                        <span>DK</span>
+                        <span>LP</span>
+                        <span>+</span>
+                    </div>
+                    <p class="hero-trust-text"><strong>2,000+ students</strong> already learning</p>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Qualified Tutors</div>
+            </div>
+                </div>
+                <div class="hero-trust">
+                    <div class="hero-trust-avatars" aria-hidden="true">
+                        <span>AM</span>
+                        <span>DK</span>
+                        <span>LP</span>
+                        <span>+</span>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-label">Lessons Completed</div>
+                    <p class="hero-trust-text"><strong>2,000+ students</strong> already learning</p>
+                </div>
+            </div>
+
+            <div class="hero-media-wrap">
+                <!-- iOS requires autoplay + muted + playsinline + webkit-playsinline -->
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    webkit-playsinline
+                    preload="metadata"
+                    disablePictureInPicture
+                    disableRemotePlayback
+                    x-webkit-airplay="deny"
+                    controlsList="nodownload nofullscreen noremoteplayback"
+                    aria-hidden="true"
+                >
+                    <source src="assets/hero-video.mp4" type="video/mp4">
+                </video>
+                <div class="hero-badge-float">
+                    <div class="badge-icon" aria-hidden="true">
+                        <!-- Star icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">4.9/5</div>
-                        <div class="stat-label">Average Rating</div>
+                    <div class="badge-text">
+                        <strong>4.9 / 5 rating</strong>
+                        <span>from 800+ reviews</span>
                     </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="tutor-card card-1">
-                    <div class="tutor-avatar">
-                        <div class="avatar-placeholder">JD</div>
-                    </div>
-                    <div class="tutor-info">
-                        <h4>Sarah Johnson</h4>
-                        <p>Conversation Expert</p>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+    <div class="container">
+        <div class="stats-inner">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Verified Tutors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10k+</div>
+                <div class="stat-label">Lessons Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.9</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">48h</div>
+                <div class="stat-label">Avg. Response Time</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Simple Process</span>
+            <h2 class="section-title">Up and running in minutes</h2>
+            <p class="section-subtitle">No complicated setup. Just sign up, pick a tutor, and start learning.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-icon-wrap" aria-hidden="true">
+                    <!-- User icon -->
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
                         <div class="tutor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">5.0</span>
+                            <span class="star">★</span> 5.0 (142 reviews)
                         </div>
                     </div>
                 </div>
-                <div class="tutor-card card-2">
-                    <div class="tutor-avatar">
-                        <div class="avatar-placeholder">MP</div>
-                    </div>
-                    <div class="tutor-info">
-                        <h4>Michael Park</h4>
-                        <p>Business English</p>
+            </div>
+            <div class="tutor-card">
+                <img src="assets/tutor2.jpg" alt="Lusanda Mabuza" class="tutor-card-img">
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Lusanda Mabuza</div>" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </div>
+                <h3 class="step-title">Choose your tutor</h3>
+                <p class="step-desc">Browse verified C1 tutors, read their profiles, and pick the right fit for your goals.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <img src="assets/tutor3.jpg" alt="Leeroy Evergreen" class="tutor-card-img">
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Leeroy Evergreen</div>
+                    <div class="tutor-specialty">IELTS & Exam Prep</div>
+                    <div class="tutor-meta">
                         <div class="tutor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">4.9</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="tutor-card card-3">
-                    <div class="tutor-avatar">
-                        <div class="avatar-placeholder">EC</div>
-                    </div>
-                    <div class="tutor-info">
-                        <h4>Emma Chen</h4>
-                        <p>IELTS Specialist</p>
+                            <span class="star">★</span> 5.0 (211 reviews)
+                        </div>Book &amp; start learning</h3>
+                <p class="step-desc">Pick a time, pay securely, and join your lesson via video call. It's that simple.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tutors -->
+<section class="tutors" id="tutors">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Our Tutors</span>
+            <h2 class="section-title">Meet some of our tutors</h2>
+            <p class="section-subtitle">Every tutor on LEARN is verified C1 level with real teaching experience.</p>
+        </div>
+        <div class="tutors-grid">
+            <div class="tutor-card">
+                <img src="assets/tutor1.jpg" alt="Sarah Johnson — Conversation & Fluency tutor" class="tutor-card-img" loading="lazy" width="400" height="300">
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Sarah Johnson</div>
+                    <div class="tutor-specialty">Conversation &amp; Fluency</div>
+                    <div class="tutor-meta">
                         <div class="tutor-rating">
-                            <span class="stars">★★★★★</span>
-                            <span class="rating-text">5.0</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            5.0 <span class="rating-count">(142 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <img src="assets/tutor2.jpg" alt="Michael Park — Business English tutor" class="tutor-card-img" loading="lazy" width="400" height="300">
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Michael Park</div>
+                    <div class="tutor-specialty">Business English</div>
+                    <div class="tutor-meta">
+                        <div class="tutor-rating">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            4.9 <span class="rating-count">(98 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <img src="assets/tutor3.jpg" alt="Emma Chen — IELTS & Exam Prep tutor" class="tutor-card-img" loading="lazy" width="400" height="300">
+                <div class="tutor-card-body">
+                    <div class="tutor-name">Emma Chen</div>
+                    <div class="tutor-specialty">IELTS &amp; Exam Prep</div>
+                    <div class="tutor-meta">
+                        <div class="tutor-rating">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            5.0 <span class="rating-count">(211 reviews)</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">How It Works</h2>
-                <p class="section-subtitle">Get started in three simple steps</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <div class="step-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" />
-                            <path
-                                d="M20 12C16.6863 12 14 14.6863 14 18C14 21.3137 16.6863 24 20 24C23.3137 24 26 21.3137 26 18C26 14.6863 23.3137 12 20 12Z"
-                                stroke="currentColor" stroke-width="2" />
-                            <path d="M12 30C12 26 15 24 20 24C25 24 28 26 28 30" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="step-title">Create Your Account</h3>
-                    <p class="step-description">Sign up in seconds and complete your student profile. Tell us about your
-                        learning goals and preferences.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <div class="step-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <rect x="10" y="12" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M10 16H30" stroke="currentColor" stroke-width="2" />
-                            <circle cx="15" cy="14" r="1" fill="currentColor" />
-                            <circle cx="18" cy="14" r="1" fill="currentColor" />
-                            <circle cx="21" cy="14" r="1" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <h3 class="step-title">Choose Your Tutor</h3>
-                    <p class="step-description">Browse qualified C1 tutors, check their profiles, and select the perfect
-                        match for your needs.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <div class="step-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                            <rect x="11" y="13" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M17 19L21 21.5L17 24V19Z" fill="currentColor" />
-                            <circle cx="27" cy="15" r="3" stroke="currentColor" stroke-width="2" />
-                        </svg>
-                    </div>
-                    <h3 class="step-title">Book & Learn</h3>
-                    <p class="step-description">Schedule your lesson, pay securely, and start learning via video call.
-                        It's that simple!</p>
-                </div>
+<!-- Pricing -->
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <div class="section-header" style="margin-bottom: 0;">
+            <span class="section-label">Pricing</span>
+            <h2 class="section-title">Pay only when you book</h2>
+            <p class="section-subtitle">No subscriptions. No hidden fees. Tutors set their own rates — you pay per lesson, securely.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-inner">
+            <h2 class="cta-title">Ready to start learning?</h2>
+            <p class="cta-subtitle">Join thousands of students improving their English every day.</p>
+            <div class="cta-actions">
+                <a href="pages/auth/register.html" class="btn btn-white btn-lg">Get Started Free</a>
+                <a href="pages/auth/tutor-apply.html" class="btn btn-outline-white btn-lg">Become a Tutor</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <path
-                                d="M16 4L18.9443 10.0557L25 13L18.9443 15.9443L16 22L13.0557 15.9443L7 13L13.0557 10.0557L16 4Z"
-                                fill="currentColor" />
-                            <path
-                                d="M24 18L25.4721 21.5279L29 23L25.4721 24.4721L24 28L22.5279 24.4721L19 23L22.5279 21.5279L24 18Z"
-                                fill="currentColor" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Expert Tutors Only</h3>
-                    <p class="feature-description">All tutors are verified C1 level English speakers with proven
-                        teaching experience.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect x="6" y="8" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M6 12H26" stroke="currentColor" stroke-width="2" />
-                            <circle cx="10" cy="10" r="1" fill="currentColor" />
-                            <circle cx="13" cy="10" r="1" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Flexible Scheduling</h3>
-                    <p class="feature-description">Book lessons that fit your schedule. Choose times that work best for
-                        you.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="2" />
-                            <path d="M16 11V16L19 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">One-on-One Sessions</h3>
-                    <p class="feature-description">Personalized attention in every lesson. Progress faster with tailored
-                        instruction.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect x="8" y="10" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" />
-                            <circle cx="16" cy="16" r="2" fill="currentColor" />
-                            <path d="M8 16H10" stroke="currentColor" stroke-width="2" />
-                            <path d="M22 16H24" stroke="currentColor" stroke-width="2" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Secure Payments</h3>
-                    <p class="feature-description">Safe, encrypted payment processing. Pay only when you book a lesson.
-                    </p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <rect x="9" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2" />
-                            <path d="M14 17L16.5 19L19 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Integrated Video Calls</h3>
-                    <p class="feature-description">Seamless video lessons via Zoom, Google Meet, or Microsoft Teams.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                            <path
-                                d="M16 6L17.5279 12.4721L24 14L17.5279 15.5279L16 22L14.4721 15.5279L8 14L14.4721 12.4721L16 6Z"
-                                stroke="currentColor" stroke-width="2" />
-                            <path
-                                d="M23 9L23.7639 11.2361L26 12L23.7639 12.7639L23 15L22.2361 12.7639L20 12L22.2361 11.2361L23 9Z"
-                                stroke="currentColor" stroke-width="2" />
-                        </svg>
-                    </div>
-                    <h3 class="feature-title">Progress Tracking</h3>
-                    <p class="feature-description">Monitor your improvement with lesson history and tutor feedback.</p>
-                </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="assets/logo.jpeg" alt="LEARN" class="footer-logo-img" width="80" height="28" loading="lazy">
+                <p class="footer-desc">Connecting students with qualified C1 English tutors for real, measurable progress.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Students</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Find a Tutor</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Tutors</h4>
+                <ul class="footer-links">
+                    <li><a href="pages/auth/tutor-apply.html">Become a Tutor</a></li>
+                    <li><a href="#">Tutor Resources</a></li>
+                    <li><a href="#">Payment Info</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Simple, Transparent Pricing</h2>
-                <p class="section-subtitle">Pay only when you book. No subscriptions, no hidden fees.</p>
-            </div>
-            <div class="pricing-info">
-                <div class="pricing-card">
-                    <div class="pricing-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" />
-                            <path d="M24 16V24L28 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h3 class="pricing-title">Book Per Lesson</h3>
-                    <p class="pricing-description">Choose from tutors at various price points. Rates set by individual
-                        tutors based on their experience and expertise.</p>
-                    <ul class="pricing-features">
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" />
-                                <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>Flexible lesson pricing</span>
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" />
-                                <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>Pay as you go</span>
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" />
-                                <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>No commitment required</span>
-                        </li>
-                        <li>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" />
-                                <path d="M6 10L9 13L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
-                            <span>Secure payment at booking</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="btn-pricing">Browse Tutors</a>
-                </div>
-                <div class="pricing-note">
-                    <div class="note-icon">ℹ️</div>
-                    <div class="note-content">
-                        <h4>How Payment Works</h4>
-                        <p>When you book a lesson, payment is processed automatically. The platform takes a small
-                            commission to maintain the service, and the remainder goes directly to your tutor. All
-                            transactions are secure and encrypted.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LEARN. All rights reserved.</p>
+            <p class="footer-dev">Developed by <a href="https://brelinx.com" target="_blank" rel="noopener noreferrer">Brelinx</a> &mdash; Web Development &amp; IT Solutions</p>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What Our Students Say</h2>
-                <p class="section-subtitle">Real feedback from real learners</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"I've tried multiple platforms, but LearnU stands out.
-                        My tutor understood exactly what I needed and tailored each lesson perfectly. I passed my C1
-                        exam with confidence!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AM</div>
-                        <div class="author-info">
-                            <h4>Anna Martinez</h4>
-                            <p>Student from Spain</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"The booking system is incredibly easy to use. I love that I can
-                        schedule lessons around my busy work schedule. The video call quality is excellent, and my tutor
-                        is always prepared."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">DK</div>
-                        <div class="author-info">
-                            <h4>David Kim</h4>
-                            <p>Business Professional</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-text">"As a parent, I was looking for quality English lessons for my teenager.
-                        The tutors are professional, engaging, and my daughter actually looks forward to her sessions
-                        now!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">LP</div>
-                        <div class="author-info">
-                            <h4>Lisa Patel</h4>
-                            <p>Parent</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Master English?</h2>
-                <p class="cta-subtitle">Join thousands of students learning with expert C1 tutors on LearnU</p>
-                <div class="cta-buttons">
-                    <a href="pages/auth/register.html" class="btn-cta-primary">Find Your Tutor</a>
-                    <a href="pages/auth/tutor-apply.html" class="btn-cta-secondary">Become a Tutor</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <img src="assets/logo.jpeg" alt="LearnU" class="logo-img logo-img-footer">
-                    </div>
-                    <p class="footer-description">Connecting students with qualified C1 English tutors for personalized
-                        learning experiences.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M20 10C20 4.48 15.52 0 10 0S0 4.48 0 10c0 4.99 3.66 9.13 8.44 9.88v-6.99H5.9V10h2.54V7.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V10h2.78l-.45 2.89h-2.33v6.99C16.34 19.13 20 14.99 20 10z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M19.55 3.55c-.72.32-1.49.54-2.3.64.83-.5 1.46-1.28 1.76-2.22-.77.46-1.63.79-2.54.97C15.75 2.18 14.74 1.6 13.6 1.6c-2.21 0-4 1.79-4 4 0 .31.04.62.1.91-3.32-.17-6.27-1.76-8.24-4.18-.34.59-.54 1.28-.54 2.01 0 1.39.71 2.61 1.78 3.33-.66-.02-1.27-.2-1.81-.5v.05c0 1.94 1.38 3.56 3.21 3.93-.34.09-.69.14-1.05.14-.26 0-.51-.03-.75-.07.51 1.58 1.98 2.73 3.72 2.76-1.36 1.07-3.08 1.71-4.95 1.71-.32 0-.64-.02-.95-.06 1.77 1.13 3.87 1.79 6.13 1.79 7.35 0 11.37-6.09 11.37-11.37 0-.17 0-.35-.01-.52.78-.56 1.46-1.27 2-2.08z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M10 0C4.477 0 0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10c0-5.523-4.477-10-10-10z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm3.5 7.5h-2c-.276 0-.5.224-.5.5v1h2.5l-.375 2.5H11v7h-3v-7H6V9h2V7.5c0-1.93 1.57-3.5 3.5-3.5h2v3z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-heading">For Students</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Find a Tutor</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-heading">For Tutors</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Become a Tutor</a></li>
-                        <li><a href="#">Tutor Resources</a></li>
-                        <li><a href="#">Payment Info</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-heading">Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 class="footer-heading">Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 LearnU. All rights reserved. <span
-                        style="margin: 0 10px; opacity: 0.7;">|</span> Powered by <a href="https://brelinx.com"
-                        target="_blank" style="color: #ffffff; text-decoration: none; font-weight: 700;">Brelinx</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
-
 </html>
