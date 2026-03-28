@@ -232,14 +232,27 @@ window.addEventListener('scroll', () => {
 // ===================================
 
 const updateFooterYear = () => {
-    const yearElement = document.querySelector('.footer-bottom p');
-    if (yearElement) {
-        const currentYear = new Date().getFullYear();
-        yearElement.textContent = `© ${currentYear} LearnU. All rights reserved.`;
+    const yearEl = document.querySelector('.footer-bottom p');
+    if (yearEl) {
+        yearEl.textContent = `© ${new Date().getFullYear()} LEARN. All rights reserved.`;
     }
 };
 
 updateFooterYear();
+
+// ===================================
+// iOS Video Autoplay Fix
+// ===================================
+
+const heroVideo = document.querySelector('.hero-media-wrap video');
+if (heroVideo) {
+    // Force play on iOS after user interaction if autoplay was blocked
+    heroVideo.play().catch(() => {
+        document.addEventListener('touchstart', () => {
+            heroVideo.play();
+        }, { once: true });
+    });
+}
 
 // ===================================
 // Lazy Loading Images (future enhancement)
