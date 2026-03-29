@@ -158,7 +158,24 @@
         // Initialize Firebase
         initFirebase();
 
-        // Redirect if already logged in
+        // ===================================
+        // DEV BYPASS — remove before launch
+        // emeka@gmail.com / 12345
+        // ===================================
+        const DEV_EMAIL = 'emeka@gmail.com';
+        const DEV_PASSWORD = '12345';
+
+        function devLogin(email, password) {
+            if (email === DEV_EMAIL && password === DEV_PASSWORD) {
+                // Store dev session
+                sessionStorage.setItem('devUser', JSON.stringify({
+                    name: 'Emeka', email: DEV_EMAIL, role: null
+                }));
+                return true;
+            }
+            return false;
+        }
+        // ===================================        // Redirect if already logged in
         redirectIfLoggedIn();
 
         // Login Form Handler
@@ -189,7 +206,25 @@
 
             if (hasErrors) return;
 
-            // Submit
+            // DEV BYPASS — check dev credentials first
+            if (devLogin(email, password)) {
+                showToast('Dev login — choose dashboard', 'info');
+                // Show role picker for dev
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('loginAlert').className = '';
+                document.getElementById('loginAlert').innerHTML = `
+                    <div style="text-align:center;padding:1rem 0;">
+                        <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:1.25rem;">Choose which dashboard to preview:</p>
+                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                            <a href="../student/dashboard.html?preview=true" class="btn btn-primary btn-full">Student Dashboard</a>
+                            <a href="../tutor/dashboard.html?preview=true" class="btn btn-outline btn-full">Tutor Dashboard</a>
+                        </div>
+                    </div>`;
+                document.getElementById('loginAlert').style.display = 'block';
+                return;
+            }
+
+            // Normal Firebase login
             setButtonLoading('loginBtn', true);
 
             const result = await loginUser(email, password);

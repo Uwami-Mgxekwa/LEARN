@@ -148,6 +148,17 @@ let currentTutorId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
+
+    const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true';
+
+    if (isPreview) {
+        currentTutorId = 'demo';
+        setTutorTopbar('Demo', 'Tutor');
+        initTutorNav('availability');
+        renderDemoSlots();
+        return;
+    }
+
     auth.onAuthStateChanged(async (user) => {
         if (!user) { window.location.href = '../auth/login.html'; return; }
         const profile = await getUserProfile(user.uid);
@@ -216,6 +227,7 @@ async function loadSlots() {
 }
 
 async function saveSlot() {
+    if (currentTutorId === 'demo') { showToast('Preview mode — log in to save slots.', 'info'); return; }
     const btn = document.getElementById('saveSlotBtn');
     const alertEl = document.getElementById('slotAlert');
     const day = document.getElementById('slotDay').value;
@@ -254,6 +266,7 @@ async function saveSlot() {
 }
 
 async function deleteSlot(slotId) {
+    if (currentTutorId === 'demo') { showToast('Preview mode — changes are not saved.', 'info'); return; }
     if (!confirm('Delete this slot? Students who have already booked will not be affected.')) return;
     try {
         await db.collection('tutors').doc(currentTutorId).collection('slots').doc(slotId).delete();
