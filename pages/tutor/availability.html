@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>Availability — LEARN</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="tutor-dashboard.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="../../index.html" class="sidebar-logo"><img src="../../assets/logo.jpeg" alt="LEARN"></a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link" data-page="dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a>
+        <a href="availability.html" class="sidebar-link" data-page="availability"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Availability</a>
+        <a href="bookings.html" class="sidebar-link" data-page="bookings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Bookings</a>
+        <a href="earnings.html" class="sidebar-link" data-page="earnings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Earnings</a>
+        <a href="profile.html" class="sidebar-link" data-page="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="sidebar-link sidebar-logout" id="logoutBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log Out</button>
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="dash-layout">
+    <header class="topbar">
+        <button class="topbar-menu" id="menuBtn" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <div class="topbar-title">Availability</div>
+        <div class="topbar-user">
+            <div class="user-avatar" id="userAvatar">T</div>
+            <span id="userName">Loading...</span>
+        </div>
+    </header>
+
+    <main class="dash-main">
+
+        <!-- Add slot form -->
+        <div class="dash-card">
+            <div class="dash-card-header">
+                <span class="dash-card-title">Add a New Slot</span>
+                <button class="btn btn-primary btn-sm" id="toggleAddForm">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add Slot
+                </button>
+            </div>
+
+            <div class="add-slot-form" id="addSlotForm">
+                <div id="slotAlert" class="alert" style="margin-bottom:1rem;"></div>
+                <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;">
+                    <div class="form-group">
+                        <label class="form-label" for="slotDay">Day</label>
+                        <select id="slotDay" class="form-input">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="slotTime">Time</label>
+                        <input type="time" id="slotTime" class="form-input" value="09:00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="slotType">Type</label>
+                        <select id="slotType" class="form-input" id="slotType">
+                            <option value="private">Private (1 student)</option>
+                            <option value="group">Group</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;" id="groupFields">
+                    <div class="form-group" id="capacityGroup" style="display:none;">
+                        <label class="form-label" for="slotCapacity">Max Students</label>
+                        <input type="number" id="slotCapacity" class="form-input" value="5" min="2" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="slotPrice">Price (USD)</label>
+                        <input type="number" id="slotPrice" class="form-input" placeholder="25" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="slotDuration">Duration (mins)</label>
+                        <select id="slotDuration" class="form-input">
+                            <option value="30">30 min</option>
+                            <option value="45">45 min</option>
+                            <option value="60" selected>60 min</option>
+                            <option value="90">90 min</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-check">
+                        <input type="checkbox" id="slotRecurring">
+                        <span class="form-check-label">Recurring — repeat this slot every week</span>
+                    </label>
+                </div>
+                <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+                    <button class="btn btn-ghost btn-sm" id="cancelAddSlot">Cancel</button>
+                    <button class="btn btn-primary btn-sm" id="saveSlotBtn">Save Slot</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slots list -->
+        <div class="dash-card">
+            <div class="dash-card-header">
+                <span class="dash-card-title">Your Slots</span>
+                <span id="slotCount" style="font-size:0.82rem;color:var(--text-muted);">Loading...</span>
+            </div>
+            <div class="slots-list" id="slotsList">
+                <div class="skeleton" style="height:72px;border-radius:12px;margin-bottom:0.75rem;"></div>
+                <div class="skeleton" style="height:72px;border-radius:12px;margin-bottom:0.75rem;"></div>
+                <div class="skeleton" style="height:72px;border-radius:12px;"></div>
+            </div>
+            <div class="empty-state" id="noSlots" style="display:none;">
+                <div class="empty-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                <h3>No slots yet</h3>
+                <p>Add your first availability slot above.</p>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="tutor-nav.js"></script>
+<script defer>
+let currentTutorId = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    initFirebase();
+    auth.onAuthStateChanged(async (user) => {
+        if (!user) { window.location.href = '../auth/login.html'; return; }
+        const profile = await getUserProfile(user.uid);
+        if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
+        currentTutorId = user.uid;
+        setTutorTopbar(profile.firstName, profile.lastName);
+        initTutorNav('availability');
+        loadSlots();
+    });
+
+    // Toggle add form
+    document.getElementById('toggleAddForm').addEventListener('click', () => {
+        document.getElementById('addSlotForm').classList.toggle('visible');
+    });
+    document.getElementById('cancelAddSlot').addEventListener('click', () => {
+        document.getElementById('addSlotForm').classList.remove('visible');
+    });
+
+    // Show capacity field for group
+    document.getElementById('slotType').addEventListener('change', (e) => {
+        document.getElementById('capacityGroup').style.display = e.target.value === 'group' ? 'block' : 'none';
+    });
+
+    // Save slot
+    document.getElementById('saveSlotBtn').addEventListener('click', saveSlot);
+});
+
+async function loadSlots() {
+    const list = document.getElementById('slotsList');
+    const noSlots = document.getElementById('noSlots');
+    try {
+        const snap = await db.collection('tutors').doc(currentTutorId).collection('slots').orderBy('day').get();
+        const slots = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        document.getElementById('slotCount').textContent = `${slots.length} slot${slots.length !== 1 ? 's' : ''}`;
+
+        if (slots.length === 0) {
+            list.innerHTML = '';
+            noSlots.style.display = 'block';
+            return;
+        }
+        noSlots.style.display = 'none';
+        list.innerHTML = slots.map(slot => {
+            const isFull = slot.booked >= slot.capacity;
+            const isGroup = slot.type === 'group';
+            return `
+            <div class="slot-row" id="slot-${slot.id}">
+                <div class="slot-row-info">
+                    <div class="slot-row-day">${slot.day}</div>
+                    <div class="slot-row-time">${slot.time} · ${slot.duration || 60} min · $${slot.price}</div>
+                    <div class="slot-row-meta">${isGroup ? `Group · ${slot.booked || 0}/${slot.capacity} booked` : 'Private'} ${slot.recurring ? '· Recurring' : ''}</div>
+                </div>
+                <div class="slot-row-badges">
+                    <span class="slot-badge ${isGroup ? 'group' : 'private'}">${isGroup ? 'Group' : 'Private'}</span>
+                    <span class="slot-badge ${isFull ? 'full' : 'open'}">${isFull ? 'Full' : 'Open'}</span>
+                </div>
+                <div class="slot-row-actions">
+                    <button class="icon-btn danger" onclick="deleteSlot('${slot.id}')" aria-label="Delete slot">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                    </button>
+                </div>
+            </div>`;
+        }).join('');
+    } catch (err) {
+        list.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">Could not load slots.</p>';
+    }
+}
+
+async function saveSlot() {
+    const btn = document.getElementById('saveSlotBtn');
+    const alertEl = document.getElementById('slotAlert');
+    const day = document.getElementById('slotDay').value;
+    const time = document.getElementById('slotTime').value;
+    const type = document.getElementById('slotType').value;
+    const price = parseFloat(document.getElementById('slotPrice').value);
+    const duration = parseInt(document.getElementById('slotDuration').value);
+    const recurring = document.getElementById('slotRecurring').checked;
+    const capacity = type === 'group' ? parseInt(document.getElementById('slotCapacity').value) : 1;
+
+    if (!time || isNaN(price) || price < 1) {
+        alertEl.className = 'alert alert-warning visible';
+        alertEl.innerHTML = '<span>Please fill in all fields with valid values.</span>';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>';
+
+    try {
+        await db.collection('tutors').doc(currentTutorId).collection('slots').add({
+            day, time, type, price, duration, capacity, recurring,
+            booked: 0,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        alertEl.className = 'alert alert-success visible';
+        alertEl.innerHTML = '<span>Slot added successfully.</span>';
+        document.getElementById('addSlotForm').classList.remove('visible');
+        loadSlots();
+    } catch (err) {
+        alertEl.className = 'alert alert-error visible';
+        alertEl.innerHTML = '<span>Failed to save slot. Please try again.</span>';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Save Slot';
+}
+
+async function deleteSlot(slotId) {
+    if (!confirm('Delete this slot? Students who have already booked will not be affected.')) return;
+    try {
+        await db.collection('tutors').doc(currentTutorId).collection('slots').doc(slotId).delete();
+        document.getElementById(`slot-${slotId}`)?.remove();
+        showToast('Slot deleted.', 'success');
+        loadSlots();
+    } catch (err) {
+        showToast('Could not delete slot.', 'error');
+    }
+}
+</script>
+</body>
+</html>

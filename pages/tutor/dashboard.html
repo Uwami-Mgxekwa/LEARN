@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>Tutor Dashboard — LEARN</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="tutor-dashboard.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="../../index.html" class="sidebar-logo"><img src="../../assets/logo.jpeg" alt="LEARN"></a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link" data-page="dashboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Overview
+        </a>
+        <a href="availability.html" class="sidebar-link" data-page="availability">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Availability
+        </a>
+        <a href="bookings.html" class="sidebar-link" data-page="bookings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Bookings
+        </a>
+        <a href="earnings.html" class="sidebar-link" data-page="earnings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Earnings
+        </a>
+        <a href="profile.html" class="sidebar-link" data-page="profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            My Profile
+        </a>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="sidebar-link sidebar-logout" id="logoutBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Log Out
+        </button>
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="dash-layout">
+    <header class="topbar">
+        <button class="topbar-menu" id="menuBtn" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title">Overview</div>
+        <div class="topbar-user">
+            <div class="user-avatar" id="userAvatar">T</div>
+            <span id="userName">Loading...</span>
+        </div>
+    </header>
+
+    <main class="dash-main">
+
+        <!-- Stats -->
+        <div class="stats-row" id="statsRow">
+            <div class="stat-card">
+                <div class="stat-card-icon purple">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div>
+                    <div class="stat-card-value" id="statUpcoming">—</div>
+                    <div class="stat-card-label">Upcoming Lessons</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon green">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                    <div class="stat-card-value" id="statTotal">—</div>
+                    <div class="stat-card-label">Total Lessons</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon amber">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div>
+                    <div class="stat-card-value" id="statEarnings">—</div>
+                    <div class="stat-card-label">Total Earnings</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-icon blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div>
+                    <div class="stat-card-value" id="statRating">—</div>
+                    <div class="stat-card-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+
+            <!-- Upcoming bookings -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Upcoming Lessons</span>
+                    <a href="bookings.html" class="btn btn-ghost btn-sm">View all</a>
+                </div>
+                <div id="upcomingList">
+                    <div class="skeleton" style="height:60px;margin-bottom:0.75rem;"></div>
+                    <div class="skeleton" style="height:60px;margin-bottom:0.75rem;"></div>
+                    <div class="skeleton" style="height:60px;"></div>
+                </div>
+            </div>
+
+            <!-- Quick actions -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Quick Actions</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                    <a href="availability.html" class="btn btn-primary btn-full" style="justify-content:flex-start;gap:0.75rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                        Add Availability Slot
+                    </a>
+                    <a href="bookings.html" class="btn btn-outline btn-full" style="justify-content:flex-start;gap:0.75rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        View All Bookings
+                    </a>
+                    <a href="earnings.html" class="btn btn-outline btn-full" style="justify-content:flex-start;gap:0.75rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        View Earnings
+                    </a>
+                    <a href="profile.html" class="btn btn-ghost btn-full" style="justify-content:flex-start;gap:0.75rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Edit Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="tutor-nav.js"></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+    initFirebase();
+    auth.onAuthStateChanged(async (user) => {
+        if (!user) { window.location.href = '../auth/login.html'; return; }
+        const profile = await getUserProfile(user.uid);
+        if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
+        setTutorTopbar(profile.firstName, profile.lastName);
+        initTutorNav('dashboard');
+        loadDashboard(user.uid, profile);
+    });
+});
+
+async function loadDashboard(uid, profile) {
+    // Stats from tutor doc
+    const tutorDoc = await db.collection('tutors').doc(uid).get();
+    const tutor = tutorDoc.exists ? tutorDoc.data() : {};
+    document.getElementById('statTotal').textContent = tutor.totalLessons || 0;
+    document.getElementById('statRating').textContent = tutor.rating ? tutor.rating.toFixed(1) : '—';
+
+    // Bookings
+    const bookingsSnap = await db.collection('bookings')
+        .where('tutorId', '==', uid)
+        .where('status', '==', 'confirmed')
+        .orderBy('createdAt', 'desc')
+        .limit(20)
+        .get();
+
+    const bookings = bookingsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const upcoming = bookings.slice(0, 5);
+
+    document.getElementById('statUpcoming').textContent = upcoming.length;
+
+    const totalEarnings = bookings.reduce((sum, b) => sum + ((b.price || 0) * 0.8), 0);
+    document.getElementById('statEarnings').textContent = `$${totalEarnings.toFixed(0)}`;
+
+    const list = document.getElementById('upcomingList');
+    if (upcoming.length === 0) {
+        list.innerHTML = `<div class="empty-state" style="padding:2rem 0;"><div class="empty-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><p>No upcoming lessons yet.</p></div>`;
+        return;
+    }
+
+    list.innerHTML = upcoming.map(b => `
+        <div class="booking-row">
+            <div class="booking-row-time">
+                <div class="booking-row-day">${b.day || '—'}</div>
+                <div class="booking-row-hour">${b.time || '—'}</div>
+            </div>
+            <div class="booking-row-info">
+                <div class="booking-row-student">${b.studentName || 'Student'}</div>
+                <div class="booking-row-type">${b.type === 'group' ? 'Group Lesson' : 'Private Lesson'}</div>
+            </div>
+            <div class="booking-row-right">
+                <span class="booking-status status-confirmed">confirmed</span>
+                <div class="booking-row-price">$${((b.price || 0) * 0.8).toFixed(0)}</div>
+            </div>
+        </div>
+    `).join('');
+}
+</script>
+</body>
+</html>

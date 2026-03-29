@@ -18,14 +18,13 @@ const firebaseConfig = {
 // ===================================
 // We use the compat (v9 compat) SDK loaded via <script> tags
 
-let db, auth, storage;
+let db, auth;
 
 function initFirebase() {
     if (typeof firebase !== 'undefined') {
         firebase.initializeApp(firebaseConfig);
         auth = firebase.auth();
         db = firebase.firestore();
-        storage = firebase.storage();
         console.log('%c Firebase initialized ✓', 'color: #43A047; font-weight: bold;');
         return true;
     } else {
@@ -149,6 +148,6 @@ function redirectToDashboard(role) {
             window.location.href = '/pages/admin/dashboard.html';
             break;
         default:
-            window.location.href = '/';
+            window.location.href = '/pages/student/dashboard.html';
     }
 }

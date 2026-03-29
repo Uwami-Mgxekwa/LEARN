@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>My Profile — LEARN</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="../../index.html" class="sidebar-logo">
+            <img src="../../assets/logo.jpeg" alt="LEARN">
+        </a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Find Tutors
+        </a>
+        <a href="my-lessons.html" class="sidebar-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            My Lessons
+        </a>
+        <a href="profile.html" class="sidebar-link active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            My Profile
+        </a>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="sidebar-link sidebar-logout" id="logoutBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Log Out
+        </button>
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="dash-layout">
+    <header class="topbar">
+        <button class="topbar-menu" id="menuBtn" aria-label="Open menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title">My Profile</div>
+        <div class="topbar-user">
+            <div class="user-avatar" id="userAvatar">?</div>
+            <span id="userName">Loading...</span>
+        </div>
+    </header>
+
+    <main class="dash-main">
+
+        <div class="profile-layout">
+
+            <!-- Avatar card -->
+            <div class="profile-avatar-card">
+                <div class="profile-avatar-circle" id="profileAvatarCircle">?</div>
+                <div class="profile-avatar-name" id="profileFullName">Loading...</div>
+                <div class="profile-avatar-email" id="profileEmail"></div>
+                <span class="profile-role-badge">Student</span>
+            </div>
+
+            <!-- Edit form -->
+            <div class="profile-form-card">
+                <h2 class="profile-section-title">Personal Information</h2>
+
+                <div id="profileAlert" class="alert" style="margin-bottom:1rem;"></div>
+
+                <form id="profileForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="profileFirstName">First Name</label>
+                            <input type="text" id="profileFirstName" class="form-input" placeholder="First name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="profileLastName">Last Name</label>
+                            <input type="text" id="profileLastName" class="form-input" placeholder="Last name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="profileEmailField">Email Address</label>
+                        <input type="email" id="profileEmailField" class="form-input" disabled style="opacity:0.6; cursor:not-allowed;">
+                        <div class="form-hint">Email cannot be changed here. Contact support if needed.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="profileTimezone">Timezone</label>
+                        <input type="text" id="profileTimezone" class="form-input" placeholder="e.g. Africa/Johannesburg" readonly style="opacity:0.6;">
+                    </div>
+
+                    <button type="submit" id="saveProfileBtn" class="btn btn-primary">Save Changes</button>
+                </form>
+
+                <div class="profile-divider"></div>
+
+                <h2 class="profile-section-title">Change Password</h2>
+                <div id="passwordAlert" class="alert" style="margin-bottom:1rem;"></div>
+                <form id="passwordForm" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="newPassword">New Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="newPassword" class="form-input" placeholder="At least 6 characters" autocomplete="new-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle visibility">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="confirmNewPassword">Confirm New Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmNewPassword" class="form-input" placeholder="Re-enter password" autocomplete="new-password">
+                            <button type="button" class="password-toggle" aria-label="Toggle visibility">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="savePasswordBtn" class="btn btn-outline">Update Password</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/utils.js"></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+    initFirebase();
+
+    auth.onAuthStateChanged(async (user) => {
+        if (!user) { window.location.href = '../auth/login.html'; return; }
+
+        const profile = await getUserProfile(user.uid);
+        const firstName = profile?.firstName || '';
+        const lastName = profile?.lastName || '';
+        const email = user.email || '';
+        const tz = profile?.profile?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase() || '?';
+
+        document.getElementById('userAvatar').textContent = initials;
+        document.getElementById('userName').textContent = firstName || 'Student';
+        document.getElementById('profileAvatarCircle').textContent = initials;
+        document.getElementById('profileFullName').textContent = `${firstName} ${lastName}`.trim() || 'Student';
+        document.getElementById('profileEmail').textContent = email;
+        document.getElementById('profileFirstName').value = firstName;
+        document.getElementById('profileLastName').value = lastName;
+        document.getElementById('profileEmailField').value = email;
+        document.getElementById('profileTimezone').value = tz;
+
+        // Save profile
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fn = document.getElementById('profileFirstName').value.trim();
+            const ln = document.getElementById('profileLastName').value.trim();
+            if (!fn || !ln) {
+                showAlert('profileAlert', 'Please fill in both name fields.', 'warning');
+                return;
+            }
+            setButtonLoading('saveProfileBtn', true);
+            try {
+                await db.collection('users').doc(user.uid).update({ firstName: fn, lastName: ln, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+                await user.updateProfile({ displayName: `${fn} ${ln}` });
+                document.getElementById('profileFullName').textContent = `${fn} ${ln}`;
+                document.getElementById('userName').textContent = fn;
+                document.getElementById('userAvatar').textContent = `${fn.charAt(0)}${ln.charAt(0)}`.toUpperCase();
+                document.getElementById('profileAvatarCircle').textContent = `${fn.charAt(0)}${ln.charAt(0)}`.toUpperCase();
+                showAlert('profileAlert', 'Profile updated successfully.', 'success');
+            } catch (err) {
+                showAlert('profileAlert', 'Failed to update profile. Please try again.', 'error');
+            }
+            setButtonLoading('saveProfileBtn', false);
+        });
+
+        // Change password
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const pw = document.getElementById('newPassword').value;
+            const cpw = document.getElementById('confirmNewPassword').value;
+            if (pw.length < 6) { showAlert('passwordAlert', 'Password must be at least 6 characters.', 'warning'); return; }
+            if (pw !== cpw) { showAlert('passwordAlert', 'Passwords do not match.', 'warning'); return; }
+            setButtonLoading('savePasswordBtn', true);
+            try {
+                await user.updatePassword(pw);
+                showAlert('passwordAlert', 'Password updated successfully.', 'success');
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+            } catch (err) {
+                showAlert('passwordAlert', err.message || 'Failed to update password.', 'error');
+            }
+            setButtonLoading('savePasswordBtn', false);
+        });
+    });
+
+    // Sidebar
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    document.getElementById('menuBtn').addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('visible'); document.body.style.overflow = 'hidden'; });
+    const close = () => { sidebar.classList.remove('open'); overlay.classList.remove('visible'); document.body.style.overflow = ''; };
+    document.getElementById('sidebarClose').addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    document.getElementById('logoutBtn').addEventListener('click', () => logoutUser());
+
+    setupPasswordToggles();
+});
+</script>
+
+<style>
+.profile-layout { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; align-items: start; }
+.profile-avatar-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 2rem 1.5rem; text-align: center; }
+.profile-avatar-circle { width: 80px; height: 80px; border-radius: 50%; background: var(--purple); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; margin: 0 auto 1rem; }
+.profile-avatar-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+.profile-avatar-email { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; word-break: break-all; }
+.profile-role-badge { display: inline-block; padding: 0.2rem 0.75rem; background: var(--purple-tint); color: var(--purple); border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.profile-form-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 1.75rem; }
+.profile-section-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1.25rem; }
+.profile-divider { border: none; border-top: 1px solid var(--border); margin: 1.75rem 0; }
+@media (max-width: 768px) { .profile-layout { grid-template-columns: 1fr; } }
+</style>
+</body>
+</html>

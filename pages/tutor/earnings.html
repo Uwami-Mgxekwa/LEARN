@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#8c3cdc">
+    <title>Earnings — LEARN</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
+    <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="tutor-dashboard.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <a href="../../index.html" class="sidebar-logo"><img src="../../assets/logo.jpeg" alt="LEARN"></a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link" data-page="dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Overview</a>
+        <a href="availability.html" class="sidebar-link" data-page="availability"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Availability</a>
+        <a href="bookings.html" class="sidebar-link" data-page="bookings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Bookings</a>
+        <a href="earnings.html" class="sidebar-link" data-page="earnings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Earnings</a>
+        <a href="profile.html" class="sidebar-link" data-page="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="sidebar-link sidebar-logout" id="logoutBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log Out</button>
+    </div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="dash-layout">
+    <header class="topbar">
+        <button class="topbar-menu" id="menuBtn" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+        <div class="topbar-title">Earnings</div>
+        <div class="topbar-user">
+            <div class="user-avatar" id="userAvatar">T</div>
+            <span id="userName">Loading...</span>
+        </div>
+    </header>
+
+    <main class="dash-main">
+
+        <!-- Summary cards -->
+        <div class="earnings-summary">
+            <div class="earnings-card">
+                <div class="earnings-card-value" id="totalEarned">$—</div>
+                <div class="earnings-card-label">Total Earned (after commission)</div>
+            </div>
+            <div class="earnings-card">
+                <div class="earnings-card-value" id="totalCommission">$—</div>
+                <div class="earnings-card-label">Platform Commission (20%)</div>
+            </div>
+            <div class="earnings-card">
+                <div class="earnings-card-value" id="pendingPayout">$—</div>
+                <div class="earnings-card-label">Pending Payout</div>
+            </div>
+        </div>
+
+        <!-- Info note -->
+        <div style="background:var(--purple-tint);border:1px solid var(--purple-light);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:0.88rem;color:var(--purple);">
+            <strong>Payout schedule:</strong> Earnings are paid out monthly. The platform deducts a 20% commission from each lesson payment. Your net earnings are shown above.
+        </div>
+
+        <!-- Earnings table -->
+        <div class="dash-card">
+            <div class="dash-card-header">
+                <span class="dash-card-title">Lesson Earnings</span>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="earnings-table" id="earningsTable">
+                    <thead>
+                        <tr>
+                            <th>Day &amp; Time</th>
+                            <th>Student</th>
+                            <th>Type</th>
+                            <th>Lesson Price</th>
+                            <th>Commission (20%)</th>
+                            <th>You Earn</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="earningsBody">
+                        <tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/auth.js"></script>
+<script src="../../js/utils.js"></script>
+<script src="tutor-nav.js"></script>
+<script defer>
+document.addEventListener('DOMContentLoaded', () => {
+    initFirebase();
+    auth.onAuthStateChanged(async (user) => {
+        if (!user) { window.location.href = '../auth/login.html'; return; }
+        const profile = await getUserProfile(user.uid);
+        if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
+        setTutorTopbar(profile.firstName, profile.lastName);
+        initTutorNav('earnings');
+        loadEarnings(user.uid);
+    });
+});
+
+async function loadEarnings(uid) {
+    try {
+        const snap = await db.collection('bookings')
+            .where('tutorId', '==', uid)
+            .where('status', '==', 'confirmed')
+            .orderBy('createdAt', 'desc')
+            .get();
+
+        const bookings = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+        let totalGross = 0, totalCommission = 0, totalNet = 0;
+        bookings.forEach(b => {
+            const price = b.price || 0;
+            const commission = price * 0.2;
+            const net = price * 0.8;
+            totalGross += price;
+            totalCommission += commission;
+            totalNet += net;
+        });
+
+        document.getElementById('totalEarned').textContent = `$${totalNet.toFixed(2)}`;
+        document.getElementById('totalCommission').textContent = `$${totalCommission.toFixed(2)}`;
+        document.getElementById('pendingPayout').textContent = `$${totalNet.toFixed(2)}`;
+
+        const tbody = document.getElementById('earningsBody');
+        if (bookings.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem;">No earnings yet. Once students book your lessons, they will appear here.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = bookings.map(b => {
+            const price = b.price || 0;
+            const commission = (price * 0.2).toFixed(2);
+            const net = (price * 0.8).toFixed(2);
+            return `
+            <tr>
+                <td>${b.day || '—'} ${b.time || ''}</td>
+                <td>${b.studentName || 'Student'}</td>
+                <td>${b.type === 'group' ? 'Group' : 'Private'}</td>
+                <td>$${price}</td>
+                <td style="color:var(--error);">-$${commission}</td>
+                <td style="color:var(--success);font-weight:700;">$${net}</td>
+                <td><span class="booking-status status-${b.status}">${b.status}</span></td>
+            </tr>`;
+        }).join('');
+
+    } catch (err) {
+        document.getElementById('earningsBody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem;">Could not load earnings.</td></tr>';
+    }
+}
+</script>
+</body>
+</html>
