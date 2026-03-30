@@ -5,6 +5,7 @@
 const PARSE_APP_ID = "iqxBxiKs35uAnSncJ01eAEYCYITd8actbFROnmLB";
 const PARSE_JS_KEY = "4ffdGCNMd7hdgDhotg84nOoXjx5BLf5yOo0kC0TJ";
 const PARSE_FILE_KEY = "ce48625f-11cf-4f75-a61f-9a4efd3cecec";
+const PARSE_MASTER_KEY = "nsAnQBMNvjcAkpRtAhobCwy55tLZL821FHA5ITdl";
 const PARSE_HOST_URL = "https://parseapi.back4app.com/";
 
 function initBackend() {

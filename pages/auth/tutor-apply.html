@@ -650,19 +650,30 @@
 
             setButtonLoading('applyBtn', true);
 
-            // Upload documents via Parse SDK
+            // Upload documents via REST API using master key
             async function uploadFile(inputId) {
                 const file = document.getElementById(inputId).files[0];
                 if (!file) return null;
+
                 const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-                const parseFile = new Parse.File(safeName, file);
-                try {
-                    await parseFile.save();
-                    return { url: () => parseFile.url(), _url: parseFile.url() };
-                } catch (e) {
-                    console.error('Upload error:', JSON.stringify(e), e.message, e.code);
-                    throw e;
+                const response = await fetch(`https://parseapi.back4app.com/files/${safeName}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-Parse-Application-Id': PARSE_APP_ID,
+                        'X-Parse-Master-Key': PARSE_MASTER_KEY,
+                        'Content-Type': file.type || 'application/octet-stream',
+                    },
+                    body: file,
+                });
+
+                if (!response.ok) {
+                    const err = await response.json().catch(() => ({}));
+                    console.error('Upload error:', err);
+                    throw new Error(err.error || `Upload failed (${response.status})`);
                 }
+
+                const data = await response.json();
+                return { url: () => data.url, _url: data.url };
             }
 
             try {
