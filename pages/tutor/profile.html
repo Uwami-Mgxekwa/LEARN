@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8c3cdc">
-    <title>My Profile â€” LEARN Tutor</title>
+    <title>My Profile - LEARN Tutor</title>
     <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
     <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,7 @@
         <a href="profile.html" class="sidebar-link" data-page="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
     </nav>
     <div class="sidebar-footer">
+        <div style="padding:0 1rem 0.75rem;font-size:0.72rem;color:var(--text-muted);text-align:center;">Powered by <a href="https://brelinx.com" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;text-underline-offset:2px;">Brelinx</a></div>
         <button class="sidebar-link sidebar-logout" id="logoutBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log Out</button>
     </div>
 </aside>
@@ -55,11 +56,11 @@
                 <span class="profile-role-badge">Tutor</span>
                 <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
                     <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.25rem;">Rating</div>
-                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--purple);" id="profileRating">â€”</div>
+                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--purple);" id="profileRating">--</div>
                 </div>
                 <div style="margin-top:0.75rem;">
                     <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.25rem;">Total Lessons</div>
-                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--text-primary);" id="profileLessons">â€”</div>
+                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--text-primary);" id="profileLessons">--</div>
                 </div>
             </div>
 
@@ -100,23 +101,23 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label" for="profileRate">Hourly Rate (USD)</label>
+                            <label class="form-label" for="profileRate">Hourly Rate (ZAR)</label>
                             <input type="number" id="profileRate" class="form-input" min="1" placeholder="25">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="profileExperience">Experience</label>
                             <select id="profileExperience" class="form-input">
                                 <option value="0-1">Less than 1 year</option>
-                                <option value="1-3">1â€“3 years</option>
-                                <option value="3-5">3â€“5 years</option>
-                                <option value="5-10">5â€“10 years</option>
+                                <option value="1-3">1-3 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="5-10">5-10 years</option>
                                 <option value="10+">10+ years</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Subjects / Specialties</label>
-                        <div class="form-hint" style="margin-bottom:0.5rem;">Separate with commas â€” e.g. English, Java, Guitar</div>
+                        <div class="form-hint" style="margin-bottom:0.5rem;">Separate with commas - e.g. English, Java, Guitar</div>
                         <input type="text" id="profileSubjects" class="form-input" placeholder="English, Maths, Guitar...">
                     </div>
                     <button type="submit" id="saveTutorProfileBtn" class="btn btn-primary">Save Teaching Profile</button>
@@ -158,30 +159,36 @@ document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
     auth.onAuthStateChanged(async (user) => {
         if (!user) { window.location.href = '../auth/login.html'; return; }
-        const profile = await getUserProfile(user.uid);
+        const profile = await getUserProfile(user.id);
         if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
 
         setTutorTopbar(profile.firstName, profile.lastName);
         initTutorNav('profile');
 
-        // Load tutor doc
-        const tutorDoc = await db.collection('tutors').doc(user.uid).get();
-        const tutor = tutorDoc.exists ? tutorDoc.data() : {};
+        // Load Tutor record from Parse
+        const Tutor = Parse.Object.extend("Tutor");
+        const tutorQuery = new Parse.Query(Tutor);
+        tutorQuery.equalTo("user", Parse.User.current());
+        const tutorObj = await tutorQuery.first().catch(() => null);
 
-        const initials = `${profile.firstName?.charAt(0) || ''}${profile.lastName?.charAt(0) || ''}`.toUpperCase();
+        const initials = ((profile.firstName || '').charAt(0) + (profile.lastName || '').charAt(0)).toUpperCase();
         document.getElementById('profileAvatarCircle').textContent = initials;
-        document.getElementById('profileFullName').textContent = `${profile.firstName} ${profile.lastName}`;
-        document.getElementById('profileEmail').textContent = user.email;
+        document.getElementById('profileFullName').textContent = (profile.firstName || '') + ' ' + (profile.lastName || '');
+        document.getElementById('profileEmail').textContent = user.get('email') || '';
         document.getElementById('profileFirstName').value = profile.firstName || '';
         document.getElementById('profileLastName').value = profile.lastName || '';
-        document.getElementById('profileEmailField').value = user.email || '';
-        document.getElementById('profilePhone').value = tutor.phone || '';
-        document.getElementById('profileBio').value = tutor.bio || '';
-        document.getElementById('profileRate').value = tutor.hourlyRate || '';
-        document.getElementById('profileExperience').value = tutor.experience || '1-3';
-        document.getElementById('profileSubjects').value = (tutor.specialties || []).join(', ');
-        document.getElementById('profileRating').textContent = tutor.rating ? tutor.rating.toFixed(1) + ' â˜…' : 'â€”';
-        document.getElementById('profileLessons').textContent = tutor.totalLessons || 0;
+        document.getElementById('profileEmailField').value = user.get('email') || '';
+
+        if (tutorObj) {
+            document.getElementById('profilePhone').value = tutorObj.get('phone') || '';
+            document.getElementById('profileBio').value = tutorObj.get('bio') || '';
+            document.getElementById('profileRate').value = tutorObj.get('hourlyRate') || '';
+            document.getElementById('profileExperience').value = tutorObj.get('experience') || '1-3';
+            document.getElementById('profileSubjects').value = (tutorObj.get('subjects') || []).join(', ');
+            const rating = tutorObj.get('rating');
+            document.getElementById('profileRating').textContent = rating ? rating.toFixed(1) + ' \u2605' : '--';
+            document.getElementById('profileLessons').textContent = tutorObj.get('totalLessons') || 0;
+        }
 
         // Save personal info
         document.getElementById('profileForm').addEventListener('submit', async (e) => {
@@ -191,12 +198,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!fn || !ln) { showAlert('profileAlert', 'Please fill in both name fields.', 'warning'); return; }
             setButtonLoading('saveProfileBtn', true);
             try {
-                await db.collection('users').doc(user.uid).update({ firstName: fn, lastName: ln, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
-                await user.updateProfile({ displayName: `${fn} ${ln}` });
-                document.getElementById('profileFullName').textContent = `${fn} ${ln}`;
+                const currentUser = Parse.User.current();
+                currentUser.set('firstName', fn);
+                currentUser.set('lastName', ln);
+                await currentUser.save();
+                document.getElementById('profileFullName').textContent = fn + ' ' + ln;
                 setTutorTopbar(fn, ln);
                 showAlert('profileAlert', 'Profile updated.', 'success');
-            } catch { showAlert('profileAlert', 'Failed to update. Try again.', 'error'); }
+            } catch (err) { showAlert('profileAlert', 'Failed to update. Try again.', 'error'); }
             setButtonLoading('saveProfileBtn', false);
         });
 
@@ -210,9 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!bio || isNaN(rate)) { showAlert('tutorProfileAlert', 'Please fill in bio and rate.', 'warning'); return; }
             setButtonLoading('saveTutorProfileBtn', true);
             try {
-                await db.collection('tutors').doc(user.uid).update({ bio, hourlyRate: rate, experience, specialties: subjects, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
+                if (tutorObj) {
+                    tutorObj.set('bio', bio);
+                    tutorObj.set('hourlyRate', rate);
+                    tutorObj.set('experience', experience);
+                    tutorObj.set('subjects', subjects);
+                    await tutorObj.save();
+                }
                 showAlert('tutorProfileAlert', 'Teaching profile updated.', 'success');
-            } catch { showAlert('tutorProfileAlert', 'Failed to update. Try again.', 'error'); }
+            } catch (err) { showAlert('tutorProfileAlert', 'Failed to update. Try again.', 'error'); }
             setButtonLoading('saveTutorProfileBtn', false);
         });
 
@@ -225,7 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (pw !== cpw) { showAlert('passwordAlert', 'Passwords do not match.', 'warning'); return; }
             setButtonLoading('savePasswordBtn', true);
             try {
-                await user.updatePassword(pw);
+                const currentUser = Parse.User.current();
+                currentUser.set('password', pw);
+                await currentUser.save();
                 showAlert('passwordAlert', 'Password updated.', 'success');
                 document.getElementById('newPassword').value = '';
                 document.getElementById('confirmNewPassword').value = '';
@@ -236,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupPasswordToggles();
 });
+
 </script>
 </body>
 </html>

@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (user) {
             currentUser = user;
-            const profile = await getUserProfile(user.uid);
-            const name = profile?.firstName || user.displayName?.split(' ')[0] || 'Student';
+            const profile = await getUserProfile(user.id);
+            const name = profile?.firstName || 'Student';
             document.getElementById('userName').textContent = name;
             document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
             loadTutors();
@@ -56,129 +56,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===================================
-// Load Tutors from Firestore
+// Load Tutors from Back4App (Parse)
 // ===================================
 async function loadTutors() {
     showSkeletons();
 
     try {
-        const snapshot = await db.collection('tutors')
-            .where('status', '==', 'approved')
-            .get();
+        const Tutor = Parse.Object.extend("Tutor");
+        const query = new Parse.Query(Tutor);
+        query.equalTo("status", "approved");
+        query.include("user");
+        const results = await query.find();
 
-        allTutors = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-        // If no tutors in DB yet, show demo data
-        if (allTutors.length === 0) {
-            allTutors = getDemoTutors();
-        }
+        allTutors = results.map(obj => ({
+            id: obj.id,
+            firstName: obj.get('firstName'),
+            lastName: obj.get('lastName'),
+            category: obj.get('category') || 'general',
+            subjects: obj.get('subjects') || [],
+            bio: obj.get('bio') || '',
+            rating: obj.get('rating') || 0,
+            totalRatings: obj.get('totalRatings') || 0,
+            totalLessons: obj.get('totalLessons') || 0,
+            hourlyRate: obj.get('hourlyRate') || 0,
+            avatar: obj.get('avatar') || null,
+            availability: obj.get('availability') || [],
+        }));
 
         applyFilters();
     } catch (err) {
         console.error('Error loading tutors:', err);
-        allTutors = getDemoTutors();
         applyFilters();
     }
 }
 
-// ===================================
-// Demo Tutors (shown before real data)
-// ===================================
-function getDemoTutors() {
-    return [
-        {
-            id: 'demo1',
-            firstName: 'Sarah', lastName: 'Johnson',
-            category: 'languages',
-            subjects: ['English', 'French', 'Conversation'],
-            bio: 'Passionate language tutor with 8 years of experience helping students achieve fluency.',
-            rating: 5.0, totalRatings: 142, totalLessons: 380,
-            hourlyRate: 25,
-            avatar: '../../assets/tutor1.jpg',
-            availability: [
-                { id: 's1', day: 'Monday', time: '09:00', type: 'private', capacity: 1, booked: 0, price: 25 },
-                { id: 's2', day: 'Monday', time: '14:00', type: 'group', capacity: 6, booked: 3, price: 15 },
-                { id: 's3', day: 'Wednesday', time: '10:00', type: 'private', capacity: 1, booked: 0, price: 25 },
-                { id: 's4', day: 'Friday', time: '11:00', type: 'group', capacity: 8, booked: 8, price: 12 },
-            ]
-        },
-        {
-            id: 'demo2',
-            firstName: 'Michael', lastName: 'Park',
-            category: 'business',
-            subjects: ['Business English', 'Public Speaking', 'Finance'],
-            bio: 'Former corporate trainer now helping professionals master business communication.',
-            rating: 4.9, totalRatings: 98, totalLessons: 210,
-            hourlyRate: 35,
-            avatar: '../../assets/tutor2.jpg',
-            availability: [
-                { id: 's5', day: 'Tuesday', time: '08:00', type: 'private', capacity: 1, booked: 0, price: 35 },
-                { id: 's6', day: 'Thursday', time: '17:00', type: 'private', capacity: 1, booked: 0, price: 35 },
-                { id: 's7', day: 'Saturday', time: '10:00', type: 'group', capacity: 5, booked: 2, price: 20 },
-            ]
-        },
-        {
-            id: 'demo3',
-            firstName: 'Emma', lastName: 'Chen',
-            category: 'academic',
-            subjects: ['Maths', 'Physics', 'IELTS Prep'],
-            bio: 'PhD student and tutor specialising in exam preparation and academic subjects.',
-            rating: 5.0, totalRatings: 211, totalLessons: 540,
-            hourlyRate: 30,
-            avatar: '../../assets/tutor3.jpg',
-            availability: [
-                { id: 's8', day: 'Monday', time: '16:00', type: 'private', capacity: 1, booked: 0, price: 30 },
-                { id: 's9', day: 'Wednesday', time: '15:00', type: 'group', capacity: 4, booked: 1, price: 18 },
-                { id: 's10', day: 'Sunday', time: '09:00', type: 'private', capacity: 1, booked: 0, price: 30 },
-            ]
-        },
-        {
-            id: 'demo4',
-            firstName: 'Liam', lastName: 'Torres',
-            category: 'technology',
-            subjects: ['Java', 'Python', 'Web Development', 'Data Science'],
-            bio: 'Senior software engineer teaching coding from beginner to advanced level.',
-            rating: 4.8, totalRatings: 76, totalLessons: 160,
-            hourlyRate: 40,
-            avatar: null,
-            availability: [
-                { id: 's11', day: 'Tuesday', time: '19:00', type: 'private', capacity: 1, booked: 0, price: 40 },
-                { id: 's12', day: 'Thursday', time: '19:00', type: 'private', capacity: 1, booked: 0, price: 40 },
-                { id: 's13', day: 'Saturday', time: '14:00', type: 'group', capacity: 6, booked: 4, price: 22 },
-            ]
-        },
-        {
-            id: 'demo5',
-            firstName: 'Aisha', lastName: 'Nkosi',
-            category: 'music',
-            subjects: ['Guitar', 'Piano', 'Music Theory', 'Vocals'],
-            bio: 'Professional musician with 10+ years of teaching experience across all skill levels.',
-            rating: 4.9, totalRatings: 134, totalLessons: 290,
-            hourlyRate: 28,
-            avatar: null,
-            availability: [
-                { id: 's14', day: 'Monday', time: '11:00', type: 'private', capacity: 1, booked: 0, price: 28 },
-                { id: 's15', day: 'Wednesday', time: '13:00', type: 'private', capacity: 1, booked: 0, price: 28 },
-                { id: 's16', day: 'Friday', time: '15:00', type: 'group', capacity: 4, booked: 0, price: 16 },
-            ]
-        },
-        {
-            id: 'demo6',
-            firstName: 'Carlos', lastName: 'Mendez',
-            category: 'languages',
-            subjects: ['Spanish', 'Portuguese', 'Chinese (Mandarin)'],
-            bio: 'Native Spanish speaker fluent in 4 languages. Specialises in conversational learning.',
-            rating: 4.7, totalRatings: 55, totalLessons: 120,
-            hourlyRate: 22,
-            avatar: null,
-            availability: [
-                { id: 's17', day: 'Tuesday', time: '10:00', type: 'private', capacity: 1, booked: 0, price: 22 },
-                { id: 's18', day: 'Thursday', time: '10:00', type: 'group', capacity: 8, booked: 3, price: 12 },
-                { id: 's19', day: 'Saturday', time: '09:00', type: 'private', capacity: 1, booked: 0, price: 22 },
-            ]
-        },
-    ];
-}
+
 
 // ===================================
 // Filter & Sort
@@ -373,7 +285,7 @@ function openBookingModal(tutor) {
                 <button class="slot-btn ${isFull ? 'full' : ''}" data-slot-id="${slot.id}" ${isFull ? 'disabled' : ''}>
                     <div class="slot-day">${slot.day}</div>
                     <div class="slot-time">${slot.time}</div>
-                    <div class="slot-meta ${metaClass}">${metaText} · $${slot.price}</div>
+                    <div class="slot-meta ${metaClass}">${metaText} · R${slot.price}</div>
                 </button>
             `;
         }).join('');
@@ -417,7 +329,7 @@ function showBookingConfirm() {
         </div>
         <div class="booking-summary-row">
             <span>Total</span>
-            <span>$${total}</span>
+            <span>R${total}</span>
         </div>
     `;
 }
@@ -437,56 +349,18 @@ async function confirmBooking() {
     btn.innerHTML = '<span class="spinner"></span> Processing...';
 
     try {
-        const slotRef = db.collection('tutors').doc(currentTutor.id)
-            .collection('slots').doc(selectedSlot.id);
-
-        // Atomic transaction — prevents double booking
-        await db.runTransaction(async (transaction) => {
-            const slotDoc = await transaction.get(slotRef);
-
-            // For demo tutors not in Firestore, skip transaction
-            if (!slotDoc.exists) {
-                // Create booking directly (demo mode)
-                await db.collection('bookings').add({
-                    studentId: currentUser.uid,
-                    tutorId: currentTutor.id,
-                    tutorName: `${currentTutor.firstName} ${currentTutor.lastName}`,
-                    slotId: selectedSlot.id,
-                    day: selectedSlot.day,
-                    time: selectedSlot.time,
-                    type: selectedSlot.type,
-                    price: selectedSlot.price,
-                    status: 'confirmed',
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                return;
-            }
-
-            const data = slotDoc.data();
-            if (data.booked >= data.capacity) {
-                throw new Error('This slot was just booked by someone else. Please choose another time.');
-            }
-
-            // Increment booked count
-            transaction.update(slotRef, {
-                booked: firebase.firestore.FieldValue.increment(1)
-            });
-
-            // Create booking record
-            const bookingRef = db.collection('bookings').doc();
-            transaction.set(bookingRef, {
-                studentId: currentUser.uid,
-                tutorId: currentTutor.id,
-                tutorName: `${currentTutor.firstName} ${currentTutor.lastName}`,
-                slotId: selectedSlot.id,
-                day: selectedSlot.day,
-                time: selectedSlot.time,
-                type: selectedSlot.type,
-                price: selectedSlot.price,
-                status: 'confirmed',
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-        });
+        const Booking = Parse.Object.extend("Booking");
+        const booking = new Booking();
+        booking.set("studentId", currentUser.id);
+        booking.set("tutorId", currentTutor.id);
+        booking.set("tutorName", `${currentTutor.firstName} ${currentTutor.lastName}`);
+        booking.set("slotId", selectedSlot.id);
+        booking.set("day", selectedSlot.day);
+        booking.set("time", selectedSlot.time);
+        booking.set("type", selectedSlot.type);
+        booking.set("price", selectedSlot.price);
+        booking.set("status", "confirmed");
+        await booking.save();
 
         // Success
         document.getElementById('modalStep2').style.display = 'none';

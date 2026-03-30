@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8c3cdc">
-    <title>Earnings â€” LEARN</title>
+    <title>Earnings - LEARN</title>
     <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
     <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +29,7 @@
         <a href="profile.html" class="sidebar-link" data-page="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>My Profile</a>
     </nav>
     <div class="sidebar-footer">
+        <div style="padding:0 1rem 0.75rem;font-size:0.72rem;color:var(--text-muted);text-align:center;">Powered by <a href="https://brelinx.com" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;text-underline-offset:2px;">Brelinx</a></div>
         <button class="sidebar-link sidebar-logout" id="logoutBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log Out</button>
     </div>
 </aside>
@@ -49,15 +50,15 @@
         <!-- Summary cards -->
         <div class="earnings-summary">
             <div class="earnings-card">
-                <div class="earnings-card-value" id="totalEarned">$â€”</div>
+                <div class="earnings-card-value" id="totalEarned">$-</div>
                 <div class="earnings-card-label">Total Earned (after commission)</div>
             </div>
             <div class="earnings-card">
-                <div class="earnings-card-value" id="totalCommission">$â€”</div>
+                <div class="earnings-card-value" id="totalCommission">$-</div>
                 <div class="earnings-card-label">Platform Commission (20%)</div>
             </div>
             <div class="earnings-card">
-                <div class="earnings-card-value" id="pendingPayout">$â€”</div>
+                <div class="earnings-card-value" id="pendingPayout">$-</div>
                 <div class="earnings-card-label">Pending Payout</div>
             </div>
         </div>
@@ -109,75 +110,63 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isPreview) {
         setTutorTopbar('Demo', 'Tutor');
         initTutorNav('earnings');
-        const demo = [
+        renderEarnings([
             { day: 'Monday', time: '09:00', studentName: 'Anna M.', type: 'private', price: 30, status: 'confirmed' },
             { day: 'Tuesday', time: '14:00', studentName: 'Group (4)', type: 'group', price: 15, status: 'confirmed' },
             { day: 'Wednesday', time: '11:00', studentName: 'David K.', type: 'private', price: 30, status: 'confirmed' },
             { day: 'Friday', time: '16:00', studentName: 'Lisa P.', type: 'private', price: 30, status: 'confirmed' },
-        ];
-        renderEarnings(demo);
+        ]);
         return;
     }
 
     auth.onAuthStateChanged(async (user) => {
         if (!user) { window.location.href = '../auth/login.html'; return; }
-        const profile = await getUserProfile(user.uid);
+        const profile = await getUserProfile(user.id);
         if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
         setTutorTopbar(profile.firstName, profile.lastName);
         initTutorNav('earnings');
-        loadEarnings(user.uid);
+        loadEarnings(user.id);
     });
 });
 
 async function loadEarnings(uid) {
     try {
-        const snap = await db.collection('bookings')
-            .where('tutorId', '==', uid)
-            .where('status', '==', 'confirmed')
-            .orderBy('createdAt', 'desc')
-            .get();
-
-        const bookings = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-
-        let totalGross = 0, totalCommission = 0, totalNet = 0;
-        bookings.forEach(b => {
-            const price = b.price || 0;
-            const commission = price * 0.2;
-            const net = price * 0.8;
-            totalGross += price;
-            totalCommission += commission;
-            totalNet += net;
-        });
-
-        document.getElementById('totalEarned').textContent = `$${totalNet.toFixed(2)}`;
-        document.getElementById('totalCommission').textContent = `$${totalCommission.toFixed(2)}`;
-        document.getElementById('pendingPayout').textContent = `$${totalNet.toFixed(2)}`;
-
-        const tbody = document.getElementById('earningsBody');
-        if (bookings.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem;">No earnings yet. Once students book your lessons, they will appear here.</td></tr>';
-            return;
-        }
-
-        tbody.innerHTML = bookings.map(b => {
-            const price = b.price || 0;
-            const commission = (price * 0.2).toFixed(2);
-            const net = (price * 0.8).toFixed(2);
-            return `
-            <tr>
-                <td>${b.day || 'â€”'} ${b.time || ''}</td>
-                <td>${b.studentName || 'Student'}</td>
-                <td>${b.type === 'group' ? 'Group' : 'Private'}</td>
-                <td>$${price}</td>
-                <td style="color:var(--error);">-$${commission}</td>
-                <td style="color:var(--success);font-weight:700;">$${net}</td>
-                <td><span class="booking-status status-${b.status}">${b.status}</span></td>
-            </tr>`;
-        }).join('');
-
+        const Booking = Parse.Object.extend("Booking");
+        const query = new Parse.Query(Booking);
+        query.equalTo("tutorId", uid);
+        query.equalTo("status", "confirmed");
+        query.descending("createdAt");
+        const results = await query.find();
+        const bookings = results.map(b => ({
+            day: b.get('day'),
+            time: b.get('time'),
+            studentName: b.get('studentName') || 'Student',
+            type: b.get('type'),
+            price: b.get('price') || 0,
+            status: b.get('status'),
+        }));
+        renderEarnings(bookings);
     } catch (err) {
-        document.getElementById('earningsBody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:2rem;">Could not load earnings.</td></tr>';
+        document.getElementById('earningsBody').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;">Could not load earnings.</td></tr>';
     }
+}
+
+function renderEarnings(bookings) {
+    let totalNet = 0, totalCommission = 0;
+    bookings.forEach(b => { totalNet += b.price * 0.8; totalCommission += b.price * 0.2; });
+    document.getElementById('totalEarned').textContent = 'R' + totalNet.toFixed(2);
+    document.getElementById('totalCommission').textContent = 'R' + totalCommission.toFixed(2);
+    document.getElementById('pendingPayout').textContent = 'R' + totalNet.toFixed(2);
+    const tbody = document.getElementById('earningsBody');
+    if (bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;">No earnings yet.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = bookings.map(b => {
+        const commission = (b.price * 0.2).toFixed(2);
+        const net = (b.price * 0.8).toFixed(2);
+        return '<tr><td>' + (b.day||'--') + ' ' + (b.time||'') + '</td><td>' + b.studentName + '</td><td>' + (b.type==='group'?'Group':'Private') + '</td><td>$' + b.price + '</td><td style="color:var(--error);">-$' + commission + '</td><td style="color:var(--success);font-weight:700;">$' + net + '</td><td><span class="booking-status status-' + b.status + '">' + b.status + '</span></td></tr>';
+    }).join('');
 }
 </script>
 </body>

@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../assets/logo.jpeg">
     <meta name="apple-mobile-web-app-title" content="LEARN">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="msapplication-TileImage" content="../../assets/logo.jpeg">
     <meta name="msapplication-TileColor" content="#8c3cdc">
@@ -55,7 +56,7 @@
                         <span class="branding-feature-icon">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         </span>
-                        <span>Flexible schedule â€” teach when you want</span>
+                        <span>Flexible schedule - teach when you want</span>
                     </div>
                     <div class="branding-feature">
                         <span class="branding-feature-icon">
@@ -132,7 +133,7 @@
                                 <label class="form-label" for="tutorPhone">Phone Number</label>
                                 <input type="tel" id="tutorPhone" class="form-input" placeholder="+1 (555) 000-0000"
                                     autocomplete="tel">
-                                <div class="form-hint">Optional â€” for verification purposes</div>
+                                <div class="form-hint">Optional - for verification purposes</div>
                             </div>
 
                             <div class="form-row">
@@ -213,7 +214,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="tutorRate">Hourly Rate (USD)</label>
+                                <label class="form-label" for="tutorRate">Hourly Rate (ZAR)</label>
                                 <input type="number" id="tutorRate" class="form-input" placeholder="25" min="5"
                                     max="200" required>
                                 <div class="form-hint">Platform takes a 20% commission per lesson</div>
@@ -415,7 +416,7 @@
                     valid = false;
                 }
                 if (!document.getElementById('tutorRate').value || parseFloat(document.getElementById('tutorRate').value) < 5) {
-                    showFieldError('tutorRate', 'Minimum $5/hour');
+                    showFieldError('tutorRate', 'Minimum R5/hour');
                     valid = false;
                 }
 
