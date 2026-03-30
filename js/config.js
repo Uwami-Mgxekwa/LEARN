@@ -1,87 +1,67 @@
 // ===================================
-// Firebase Configuration
+// Back4App (Parse SDK) Configuration
 // ===================================
-// Replace these values with your actual Firebase project config
-// Get them from: Firebase Console > Project Settings > General > Your apps
+// Replace these with your actual keys from Back4App Dashboard
+const PARSE_APP_ID = "iqxBxiKs35uAnSncJ01eAEYCYITd8actbFROnmLB";
+const PARSE_JS_KEY = "4ffdGCNMd7hdgDhotg84nOoXjx5BLf5yOo0kC0TJ";
+const PARSE_HOST_URL = "https://parseapi.back4app.com/";
 
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.firebasestorage.app",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
-// ===================================
-// Firebase Initialization (using CDN modules)
-// ===================================
-// We use the compat (v9 compat) SDK loaded via <script> tags
-
-let db, auth;
-
-function initFirebase() {
-    if (typeof firebase !== 'undefined') {
-        firebase.initializeApp(firebaseConfig);
-        auth = firebase.auth();
-        db = firebase.firestore();
-        console.log('%c Firebase initialized ✓', 'color: #43A047; font-weight: bold;');
+function initBackend() {
+    if (typeof Parse !== 'undefined') {
+        Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
+        Parse.serverURL = PARSE_HOST_URL;
+        console.log('%c Back4App initialized ✓', 'color: #007bff; font-weight: bold;');
+        
+        // Prepare compatibility layer
+        window.auth = {
+            onAuthStateChanged: (callback) => {
+                // Parse.User.current() is available immediately, 
+                // we wrap it in a microtask to ensure it behaves like Firebase's async trigger
+                setTimeout(() => callback(Parse.User.current()), 0);
+            }
+        };
+        
         return true;
     } else {
-        console.warn('Firebase SDK not loaded yet.');
+        console.warn('Parse SDK not loaded yet. Add <script src="https://npmcdn.com/parse/dist/parse.min.js"></script> to your HTML files.');
         return false;
     }
 }
 
-// ===================================
-// Auth State Observer
-// ===================================
-
-function onAuthStateChanged(callback) {
-    if (!auth) return;
-    auth.onAuthStateChanged(callback);
+// Compatibility alias
+function initFirebase() {
+    return initBackend();
 }
+let db = null; // Placeholder as Parse uses classes, not a single db object like Firestore
 
 // ===================================
-// Get Current User
+// Auth State Helpers
 // ===================================
 
 function getCurrentUser() {
-    return auth ? auth.currentUser : null;
-}
-
-// ===================================
-// Get User Role from Firestore
-// ===================================
-
-async function getUserRole(uid) {
-    try {
-        const doc = await db.collection('users').doc(uid).get();
-        if (doc.exists) {
-            return doc.data().role;
-        }
-        return null;
-    } catch (error) {
-        console.error('Error getting user role:', error);
-        return null;
+    if (typeof Parse !== 'undefined') {
+        return Parse.User.current();
     }
+    return null;
 }
-
-// ===================================
-// Get User Profile from Firestore
-// ===================================
 
 async function getUserProfile(uid) {
-    try {
-        const doc = await db.collection('users').doc(uid).get();
-        if (doc.exists) {
-            return { id: doc.id, ...doc.data() };
-        }
-        return null;
-    } catch (error) {
-        console.error('Error getting user profile:', error);
-        return null;
-    }
+    if (typeof Parse === 'undefined') return null;
+    const user = Parse.User.current();
+    if (!user) return null;
+    
+    return {
+        id: user.id,
+        firstName: user.get('firstName'),
+        lastName: user.get('lastName'),
+        email: user.get('email'),
+        role: user.get('role')
+    };
+}
+
+async function getUserRole(uid) {
+    const user = Parse.User.current();
+    return user ? user.get('role') || 'student' : 'student';
 }
 
 // ===================================
@@ -89,65 +69,39 @@ async function getUserProfile(uid) {
 // ===================================
 
 function requireAuth(allowedRoles = []) {
-    return new Promise((resolve, reject) => {
-        if (!auth) {
+    const user = getCurrentUser();
+    if (!user) {
+        window.location.href = '/pages/auth/login.html';
+        return;
+    }
+    
+    if (allowedRoles.length > 0) {
+        const role = user.get('role') || 'student';
+        if (!allowedRoles.includes(role)) {
             window.location.href = '/pages/auth/login.html';
-            reject('Not initialized');
-            return;
         }
-
-        auth.onAuthStateChanged(async (user) => {
-            if (!user) {
-                window.location.href = '/pages/auth/login.html';
-                reject('Not authenticated');
-                return;
-            }
-
-            if (allowedRoles.length > 0) {
-                const role = await getUserRole(user.uid);
-                if (!allowedRoles.includes(role)) {
-                    window.location.href = '/pages/auth/login.html';
-                    reject('Unauthorized role');
-                    return;
-                }
-            }
-
-            resolve(user);
-        });
-    });
+    }
 }
-
-// ===================================
-// Redirect if Already Logged In
-// ===================================
 
 function redirectIfLoggedIn() {
-    if (!auth) return;
-
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            const role = await getUserRole(user.uid);
-            redirectToDashboard(role);
-        }
-    });
+    const user = getCurrentUser();
+    if (user) {
+        const role = user.get('role') || 'student';
+        redirectToDashboard(role);
+    }
 }
 
-// ===================================
-// Redirect by Role
-// ===================================
-
 function redirectToDashboard(role) {
+    const pathPrefix = window.location.pathname.includes('/auth/') ? '../' : './';
+    
     switch (role) {
         case 'student':
-            window.location.href = '/pages/student/dashboard.html';
+            window.location.href = pathPrefix + 'student/dashboard.html';
             break;
         case 'tutor':
-            window.location.href = '/pages/tutor/dashboard.html';
-            break;
-        case 'admin':
-            window.location.href = '/pages/admin/dashboard.html';
+            window.location.href = pathPrefix + 'tutor/dashboard.html';
             break;
         default:
-            window.location.href = '/pages/student/dashboard.html';
+            window.location.href = pathPrefix + 'student/dashboard.html';
     }
 }

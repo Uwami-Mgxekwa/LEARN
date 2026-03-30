@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8c3cdc">
-    <title>My Profile — LEARN Tutor</title>
+    <title>My Profile â€” LEARN Tutor</title>
     <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
     <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,11 +55,11 @@
                 <span class="profile-role-badge">Tutor</span>
                 <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);">
                     <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.25rem;">Rating</div>
-                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--purple);" id="profileRating">—</div>
+                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--purple);" id="profileRating">â€”</div>
                 </div>
                 <div style="margin-top:0.75rem;">
                     <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.25rem;">Total Lessons</div>
-                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--text-primary);" id="profileLessons">—</div>
+                    <div style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--text-primary);" id="profileLessons">â€”</div>
                 </div>
             </div>
 
@@ -107,16 +107,16 @@
                             <label class="form-label" for="profileExperience">Experience</label>
                             <select id="profileExperience" class="form-input">
                                 <option value="0-1">Less than 1 year</option>
-                                <option value="1-3">1–3 years</option>
-                                <option value="3-5">3–5 years</option>
-                                <option value="5-10">5–10 years</option>
+                                <option value="1-3">1â€“3 years</option>
+                                <option value="3-5">3â€“5 years</option>
+                                <option value="5-10">5â€“10 years</option>
                                 <option value="10+">10+ years</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Subjects / Specialties</label>
-                        <div class="form-hint" style="margin-bottom:0.5rem;">Separate with commas — e.g. English, Java, Guitar</div>
+                        <div class="form-hint" style="margin-bottom:0.5rem;">Separate with commas â€” e.g. English, Java, Guitar</div>
                         <input type="text" id="profileSubjects" class="form-input" placeholder="English, Maths, Guitar...">
                     </div>
                     <button type="submit" id="saveTutorProfileBtn" class="btn btn-primary">Save Teaching Profile</button>
@@ -148,9 +148,7 @@
     </main>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<!-- Parse SDK --><script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 <script src="../../js/config.js"></script>
 <script src="../../js/auth.js"></script>
 <script src="../../js/utils.js"></script>
@@ -182,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('profileRate').value = tutor.hourlyRate || '';
         document.getElementById('profileExperience').value = tutor.experience || '1-3';
         document.getElementById('profileSubjects').value = (tutor.specialties || []).join(', ');
-        document.getElementById('profileRating').textContent = tutor.rating ? tutor.rating.toFixed(1) + ' ★' : '—';
+        document.getElementById('profileRating').textContent = tutor.rating ? tutor.rating.toFixed(1) + ' â˜…' : 'â€”';
         document.getElementById('profileLessons').textContent = tutor.totalLessons || 0;
 
         // Save personal info
@@ -241,3 +239,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+

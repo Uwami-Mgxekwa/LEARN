@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8c3cdc">
-    <title>Bookings — LEARN</title>
+    <title>Bookings â€” LEARN</title>
     <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
     <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,9 +74,7 @@
     </main>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<!-- Parse SDK --><script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 <script src="../../js/config.js"></script>
 <script src="../../js/auth.js"></script>
 <script src="../../js/utils.js"></script>
@@ -149,8 +147,8 @@ function renderBookings() {
     list.innerHTML = filtered.map(b => `
         <div class="booking-row">
             <div class="booking-row-time">
-                <div class="booking-row-day">${b.day || '—'}</div>
-                <div class="booking-row-hour">${b.time || '—'}</div>
+                <div class="booking-row-day">${b.day || 'â€”'}</div>
+                <div class="booking-row-hour">${b.time || 'â€”'}</div>
             </div>
             <div class="booking-row-info">
                 <div class="booking-row-student">${b.studentName || 'Student'}</div>
@@ -173,3 +171,4 @@ function renderBookings() {
 </style>
 </body>
 </html>
+

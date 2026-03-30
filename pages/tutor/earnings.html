@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#8c3cdc">
-    <title>Earnings — LEARN</title>
+    <title>Earnings â€” LEARN</title>
     <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
     <link rel="apple-touch-icon" href="../../assets/logo.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,15 +49,15 @@
         <!-- Summary cards -->
         <div class="earnings-summary">
             <div class="earnings-card">
-                <div class="earnings-card-value" id="totalEarned">$—</div>
+                <div class="earnings-card-value" id="totalEarned">$â€”</div>
                 <div class="earnings-card-label">Total Earned (after commission)</div>
             </div>
             <div class="earnings-card">
-                <div class="earnings-card-value" id="totalCommission">$—</div>
+                <div class="earnings-card-value" id="totalCommission">$â€”</div>
                 <div class="earnings-card-label">Platform Commission (20%)</div>
             </div>
             <div class="earnings-card">
-                <div class="earnings-card-value" id="pendingPayout">$—</div>
+                <div class="earnings-card-value" id="pendingPayout">$â€”</div>
                 <div class="earnings-card-label">Pending Payout</div>
             </div>
         </div>
@@ -95,9 +95,7 @@
     </main>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<!-- Parse SDK --><script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 <script src="../../js/config.js"></script>
 <script src="../../js/auth.js"></script>
 <script src="../../js/utils.js"></script>
@@ -167,7 +165,7 @@ async function loadEarnings(uid) {
             const net = (price * 0.8).toFixed(2);
             return `
             <tr>
-                <td>${b.day || '—'} ${b.time || ''}</td>
+                <td>${b.day || 'â€”'} ${b.time || ''}</td>
                 <td>${b.studentName || 'Student'}</td>
                 <td>${b.type === 'group' ? 'Group' : 'Private'}</td>
                 <td>$${price}</td>
@@ -184,3 +182,4 @@ async function loadEarnings(uid) {
 </script>
 </body>
 </html>
+
