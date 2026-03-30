@@ -149,11 +149,12 @@ let currentTutorId = null;
 document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
 
-    const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true';
+    const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true' || sessionStorage.getItem('devUser');
 
     if (isPreview) {
         currentTutorId = 'demo';
-        setTutorTopbar('Demo', 'Tutor');
+        const devData = JSON.parse(sessionStorage.getItem('devUser') || '{"name":"Demo"}');
+        setTutorTopbar(devData.name || 'Demo', 'Tutor');
         initTutorNav('availability');
         renderDemoSlots();
         return;

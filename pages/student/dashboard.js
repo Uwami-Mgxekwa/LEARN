@@ -29,17 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
 
     auth.onAuthStateChanged(async (user) => {
-        if (!user) {
+        const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true' || sessionStorage.getItem('devUser');
+
+        if (!user && !isPreview) {
             window.location.href = '../auth/login.html';
             return;
         }
-        currentUser = user;
-        const profile = await getUserProfile(user.uid);
-        const name = profile?.firstName || user.displayName?.split(' ')[0] || 'Student';
-        document.getElementById('userName').textContent = name;
-        document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
 
-        loadTutors();
+        if (user) {
+            currentUser = user;
+            const profile = await getUserProfile(user.uid);
+            const name = profile?.firstName || user.displayName?.split(' ')[0] || 'Student';
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+            loadTutors();
+        } else if (isPreview) {
+            // Dev/Preview mode
+            const devData = JSON.parse(sessionStorage.getItem('devUser') || '{"name":"Emeka"}');
+            document.getElementById('userName').textContent = devData.name;
+            document.getElementById('userAvatar').textContent = devData.name.charAt(0).toUpperCase();
+            loadTutors();
+        }
     });
 
     setupEventListeners();

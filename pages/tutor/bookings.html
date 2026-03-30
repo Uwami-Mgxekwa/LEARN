@@ -88,12 +88,26 @@ let activeStatus = 'all';
 document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
     auth.onAuthStateChanged(async (user) => {
-        if (!user) { window.location.href = '../auth/login.html'; return; }
-        const profile = await getUserProfile(user.uid);
-        if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
-        setTutorTopbar(profile.firstName, profile.lastName);
-        initTutorNav('bookings');
-        loadBookings(user.uid);
+        const isPreview = sessionStorage.getItem('devUser');
+
+        if (!user && !isPreview) {
+            window.location.href = '../auth/login.html';
+            return;
+        }
+
+        if (user) {
+            const profile = await getUserProfile(user.uid);
+            if (profile?.role !== 'tutor') { window.location.href = '../auth/login.html'; return; }
+            setTutorTopbar(profile.firstName, profile.lastName);
+            initTutorNav('bookings');
+            loadBookings(user.uid);
+        } else if (isPreview) {
+            // Dev/Preview mode
+            const devData = JSON.parse(isPreview);
+            setTutorTopbar(devData.name || 'Demo', 'Tutor');
+            initTutorNav('bookings');
+            loadBookings('demo');
+        }
     });
 
     document.querySelectorAll('.lesson-tab').forEach(tab => {

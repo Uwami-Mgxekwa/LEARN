@@ -170,6 +170,7 @@ async function resetPassword(email) {
 async function logoutUser() {
     try {
         await auth.signOut();
+        sessionStorage.removeItem('devUser');
         window.location.href = '/';
         return { success: true };
     } catch (error) {
