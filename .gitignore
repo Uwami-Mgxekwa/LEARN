@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets (never commit real secrets here)
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/settings.json
+*.suo
+*.user
+
+# Temp / build
+*.log
+dist/
+build/

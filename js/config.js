@@ -4,11 +4,12 @@
 // Replace these with your actual keys from Back4App Dashboard
 const PARSE_APP_ID = "iqxBxiKs35uAnSncJ01eAEYCYITd8actbFROnmLB";
 const PARSE_JS_KEY = "4ffdGCNMd7hdgDhotg84nOoXjx5BLf5yOo0kC0TJ";
+const PARSE_FILE_KEY = "ce48625f-11cf-4f75-a61f-9a4efd3cecec";
 const PARSE_HOST_URL = "https://parseapi.back4app.com/";
 
 function initBackend() {
     if (typeof Parse !== 'undefined') {
-        Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY);
+        Parse.initialize(PARSE_APP_ID, PARSE_JS_KEY, PARSE_FILE_KEY);
         Parse.serverURL = PARSE_HOST_URL;
         console.log('%c Back4App initialized ✓', 'color: #007bff; font-weight: bold;');
         

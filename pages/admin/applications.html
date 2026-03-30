@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Applications - Admin</title>
+    <link rel="icon" type="image/jpeg" href="../../assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <style>
+        body { background: var(--bg); font-family: var(--font-body); margin: 0; }
+        .admin-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem; }
+        .admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .admin-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; color: var(--text-primary); }
+        .admin-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-tab { padding: 0.4rem 1rem; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); font-size: 0.85rem; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; }
+        .filter-tab.active { background: var(--purple); color: #fff; border-color: var(--purple); }
+        .app-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+        .app-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .app-name { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+        .app-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; }
+        .app-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+        .badge-pending { background: #fef3c7; color: #92400e; }
+        .badge-approved { background: #d1fae5; color: #065f46; }
+        .badge-rejected { background: #fee2e2; color: #991b1b; }
+        .app-details { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+        .app-detail { font-size: 0.83rem; }
+        .app-detail-label { color: var(--text-muted); margin-bottom: 0.15rem; }
+        .app-detail-value { color: var(--text-primary); font-weight: 600; }
+        .app-bio { font-size: 0.85rem; color: var(--text-secondary); background: var(--bg); border-radius: var(--radius-md); padding: 0.75rem 1rem; margin: 0.75rem 0; line-height: 1.6; }
+        .app-docs { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 0.75rem 0; }
+        .doc-link { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border); font-size: 0.82rem; font-weight: 600; color: var(--purple); text-decoration: none; background: var(--purple-tint); transition: background 0.15s; }
+        .doc-link:hover { background: var(--purple-light); }
+        .app-actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+        .btn-approve { background: var(--success, #10b981); color: #fff; border: none; padding: 0.55rem 1.25rem; border-radius: var(--radius-md); font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: opacity 0.15s; }
+        .btn-approve:hover { opacity: 0.85; }
+        .btn-reject { background: var(--error, #ef4444); color: #fff; border: none; padding: 0.55rem 1.25rem; border-radius: var(--radius-md); font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: opacity 0.15s; }
+        .btn-reject:hover { opacity: 0.85; }
+        .btn-pending { background: var(--border); color: var(--text-secondary); border: none; padding: 0.55rem 1.25rem; border-radius: var(--radius-md); font-weight: 700; font-size: 0.88rem; cursor: pointer; }
+        .empty { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+        .admin-login { max-width: 380px; margin: 6rem auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+        .stats-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .stat-pill { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
+        .stat-pill span { color: var(--purple); font-size: 1.1rem; font-weight: 800; margin-right: 0.35rem; }
+    </style>
+</head>
+<body>
+
+<!-- Admin Login Gate -->
+<div id="adminLoginWrap" class="admin-login">
+    <div style="text-align:center;margin-bottom:1.5rem;">
+        <img src="../../assets/logo.jpeg" alt="LEARN" style="height:40px;border-radius:8px;">
+        <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:800;margin-top:0.75rem;">Admin Panel</div>
+        <div style="font-size:0.83rem;color:var(--text-muted);margin-top:0.25rem;">Tutor Application Review</div>
+    </div>
+    <div id="adminLoginAlert" class="alert" style="margin-bottom:1rem;"></div>
+    <div class="form-group">
+        <label class="form-label" for="adminEmail">Email</label>
+        <input type="email" id="adminEmail" class="form-input" placeholder="admin@learn.co.za">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" class="form-input" placeholder="Password">
+    </div>
+    <button id="adminLoginBtn" class="btn btn-primary btn-full" onclick="adminLogin()">Sign In</button>
+</div>
+
+<!-- Admin Dashboard -->
+<div id="adminDashWrap" style="display:none;">
+    <div class="admin-wrap">
+        <div class="admin-header">
+            <div>
+                <div class="admin-title">Tutor Applications</div>
+                <div class="admin-subtitle">Review, approve or reject tutor applications</div>
+            </div>
+            <div style="display:flex;gap:0.75rem;align-items:center;">
+                <button class="btn btn-ghost btn-sm" onclick="loadApplications()">Refresh</button>
+                <button class="btn btn-outline btn-sm" onclick="adminLogout()">Log Out</button>
+            </div>
+        </div>
+
+        <div class="stats-row" id="statsRow">
+            <div class="stat-pill"><span id="statPending">-</span> Pending</div>
+            <div class="stat-pill"><span id="statApproved">-</span> Approved</div>
+            <div class="stat-pill"><span id="statRejected">-</span> Rejected</div>
+        </div>
+
+        <div class="filter-tabs" style="margin-bottom:1.5rem;">
+            <button class="filter-tab active" onclick="setFilter('pending', this)">Pending</button>
+            <button class="filter-tab" onclick="setFilter('approved', this)">Approved</button>
+            <button class="filter-tab" onclick="setFilter('rejected', this)">Rejected</button>
+            <button class="filter-tab" onclick="setFilter('all', this)">All</button>
+        </div>
+
+        <div id="appsList"></div>
+    </div>
+</div>
+
+<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+<script src="../../js/config.js"></script>
+<script src="../../js/utils.js"></script>
+<script>
+initFirebase();
+
+const ADMIN_EMAILS = ['emeka@gmail.com', 'admin@learn.co.za'];
+let currentFilter = 'pending';
+let allApps = [];
+
+async function adminLogin() {
+    const email = document.getElementById('adminEmail').value.trim();
+    const password = document.getElementById('adminPassword').value;
+    if (!email || !password) { showAlert('adminLoginAlert', 'Please enter email and password.', 'warning'); return; }
+
+    document.getElementById('adminLoginBtn').textContent = 'Signing in...';
+    try {
+        const user = await Parse.User.logIn(email, password);
+        const role = user.get('role');
+        if (role !== 'admin' && !ADMIN_EMAILS.includes(email)) {
+            await Parse.User.logOut();
+            showAlert('adminLoginAlert', 'Access denied. Admin accounts only.', 'error');
+            document.getElementById('adminLoginBtn').textContent = 'Sign In';
+            return;
+        }
+        document.getElementById('adminLoginWrap').style.display = 'none';
+        document.getElementById('adminDashWrap').style.display = 'block';
+        loadApplications();
+    } catch (err) {
+        showAlert('adminLoginAlert', err.message || 'Login failed.', 'error');
+        document.getElementById('adminLoginBtn').textContent = 'Sign In';
+    }
+}
+
+async function adminLogout() {
+    await Parse.User.logOut();
+    location.reload();
+}
+
+function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderApplications();
+}
+
+async function loadApplications() {
+    document.getElementById('appsList').innerHTML = '<div class="empty">Loading applications...</div>';
+    try {
+        const Tutor = Parse.Object.extend("Tutor");
+        const query = new Parse.Query(Tutor);
+        query.descending("createdAt");
+        query.limit(200);
+        const results = await query.find();
+        allApps = results;
+
+        const pending = results.filter(r => r.get('status') === 'pending').length;
+        const approved = results.filter(r => r.get('status') === 'approved').length;
+        const rejected = results.filter(r => r.get('status') === 'rejected').length;
+        document.getElementById('statPending').textContent = pending;
+        document.getElementById('statApproved').textContent = approved;
+        document.getElementById('statRejected').textContent = rejected;
+
+        renderApplications();
+    } catch (err) {
+        document.getElementById('appsList').innerHTML = '<div class="empty">Failed to load applications: ' + err.message + '</div>';
+    }
+}
+
+function renderApplications() {
+    const filtered = currentFilter === 'all' ? allApps : allApps.filter(r => r.get('status') === currentFilter);
+    const list = document.getElementById('appsList');
+
+    if (filtered.length === 0) {
+        list.innerHTML = '<div class="empty">No ' + currentFilter + ' applications.</div>';
+        return;
+    }
+
+    list.innerHTML = filtered.map(app => {
+        const status = app.get('status') || 'pending';
+        const docId = app.get('docId');
+        const docQual = app.get('docQual');
+        const docCv = app.get('docCv');
+        const docExtra = app.get('docExtra');
+        const subjects = (app.get('subjects') || []).join(', ') || '-';
+        const qual = app.get('qualification') || '-';
+        const exp = app.get('experience') || '-';
+        const rate = app.get('hourlyRate') ? 'R' + app.get('hourlyRate') + '/hr' : '-';
+        const category = app.get('category') || '-';
+        const createdAt = app.createdAt ? new Date(app.createdAt).toLocaleDateString('en-ZA') : '-';
+
+        const docLinks = [
+            docId ? `<a href="${typeof docId === 'string' ? docId : docId.url()}" target="_blank" class="doc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>ID / Passport</a>` : '',
+            docQual ? `<a href="${typeof docQual === 'string' ? docQual : docQual.url()}" target="_blank" class="doc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Qualification</a>` : '',
+            docCv ? `<a href="${typeof docCv === 'string' ? docCv : docCv.url()}" target="_blank" class="doc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>CV / Resume</a>` : '',
+            docExtra ? `<a href="${typeof docExtra === 'string' ? docExtra : docExtra.url()}" target="_blank" class="doc-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Extra Cert</a>` : '',
+        ].filter(Boolean).join('');
+
+        const actionBtns = status === 'pending' ? `
+            <button class="btn-approve" onclick="updateStatus('${app.id}', 'approved')">Approve</button>
+            <button class="btn-reject" onclick="updateStatus('${app.id}', 'rejected')">Reject</button>
+        ` : status === 'approved' ? `
+            <button class="btn-reject" onclick="updateStatus('${app.id}', 'rejected')">Revoke Approval</button>
+            <button class="btn-pending" onclick="updateStatus('${app.id}', 'pending')">Set Pending</button>
+        ` : `
+            <button class="btn-approve" onclick="updateStatus('${app.id}', 'approved')">Approve</button>
+            <button class="btn-pending" onclick="updateStatus('${app.id}', 'pending')">Set Pending</button>
+        `;
+
+        return `<div class="app-card" id="card-${app.id}">
+            <div class="app-card-header">
+                <div>
+                    <div class="app-name">${app.get('firstName') || ''} ${app.get('lastName') || ''}</div>
+                    <div class="app-meta">${app.get('email') || ''} &nbsp;|&nbsp; ${app.get('phone') || 'No phone'} &nbsp;|&nbsp; Applied: ${createdAt}</div>
+                </div>
+                <span class="app-badge badge-${status}">${status}</span>
+            </div>
+            <div class="app-details">
+                <div class="app-detail"><div class="app-detail-label">Category</div><div class="app-detail-value">${category}</div></div>
+                <div class="app-detail"><div class="app-detail-label">Subjects</div><div class="app-detail-value">${subjects}</div></div>
+                <div class="app-detail"><div class="app-detail-label">Experience</div><div class="app-detail-value">${exp}</div></div>
+                <div class="app-detail"><div class="app-detail-label">Qualification</div><div class="app-detail-value">${qual}</div></div>
+                <div class="app-detail"><div class="app-detail-label">Hourly Rate</div><div class="app-detail-value">${rate}</div></div>
+            </div>
+            ${app.get('bio') ? `<div class="app-bio">${app.get('bio')}</div>` : ''}
+            ${docLinks ? `<div class="app-docs">${docLinks}</div>` : '<div style="font-size:0.82rem;color:var(--text-muted);margin:0.5rem 0;">No documents uploaded</div>'}
+            <div class="app-actions">${actionBtns}</div>
+        </div>`;
+    }).join('');
+}
+
+async function updateStatus(appId, newStatus) {
+    const app = allApps.find(a => a.id === appId);
+    if (!app) return;
+
+    const card = document.getElementById('card-' + appId);
+    card.style.opacity = '0.5';
+
+    try {
+        app.set('status', newStatus);
+        await app.save();
+
+        // Also update the Parse User's approved flag
+        const userId = app.get('userId');
+        if (userId) {
+            // Use a Cloud Function or direct update if ACL allows
+            // For now we rely on the Tutor record status check at login
+        }
+
+        showToast(app.get('firstName') + ' ' + newStatus + '.', newStatus === 'approved' ? 'success' : 'info');
+        await loadApplications();
+    } catch (err) {
+        card.style.opacity = '1';
+        showToast('Failed: ' + err.message, 'error');
+    }
+}
+
+// Allow Enter key on password field
+document.getElementById('adminPassword').addEventListener('keydown', e => {
+    if (e.key === 'Enter') adminLogin();
+});
+
+// Auto-login if already signed in as admin
+const currentUser = Parse.User.current();
+if (currentUser && (currentUser.get('role') === 'admin' || ADMIN_EMAILS.includes(currentUser.get('email')))) {
+    document.getElementById('adminLoginWrap').style.display = 'none';
+    document.getElementById('adminDashWrap').style.display = 'block';
+    loadApplications();
+}
+</script>
+</body>
+</html>

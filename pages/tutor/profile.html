@@ -71,21 +71,21 @@
                 <form id="profileForm" novalidate>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label" for="profileFirstName">First Name</label>
-                            <input type="text" id="profileFirstName" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="profileLastName">Last Name</label>
-                            <input type="text" id="profileLastName" class="form-input" required>
-                        </div>
+                        <label class="form-label" for="profileFirstName">First Name</label>
+                        <input type="text" id="profileFirstName" class="form-input" placeholder="Nthabiseng" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="profileLastName">Last Name</label>
+                        <input type="text" id="profileLastName" class="form-input" placeholder="Mgxekwa" required>
+                    </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="profileEmailField">Email</label>
                         <input type="email" id="profileEmailField" class="form-input" disabled style="opacity:0.6;cursor:not-allowed;">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="profilePhone">Phone (optional)</label>
-                        <input type="tel" id="profilePhone" class="form-input" placeholder="+1 (555) 000-0000">
+                        <label class="form-label" for="profilePhone">Cell Number (optional)</label>
+                        <input type="tel" id="profilePhone" class="form-input" placeholder="+27 43 582 4076">
                     </div>
                     <button type="submit" id="saveProfileBtn" class="btn btn-primary">Save Changes</button>
                 </form>
@@ -99,10 +99,34 @@
                         <label class="form-label" for="profileBio">Bio</label>
                         <textarea id="profileBio" class="form-input form-textarea" placeholder="Tell students about yourself, your teaching style, and experience..." style="min-height:120px;"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="profileCategory">Teaching Category</label>
+                        <select id="profileCategory" class="form-input">
+                            <option value="">Select category</option>
+                            <option value="languages">Languages</option>
+                            <option value="mathematics">Mathematics &amp; Statistics</option>
+                            <option value="sciences">Natural Sciences</option>
+                            <option value="technology">Technology &amp; Coding</option>
+                            <option value="business">Business &amp; Accounting</option>
+                            <option value="arts">Arts, Music &amp; Drama</option>
+                            <option value="humanities">Humanities</option>
+                            <option value="trades">Trades &amp; Vocational Skills</option>
+                            <option value="fitness">Fitness &amp; Wellness</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subjects / Specialties</label>
+                        <div class="form-hint" style="margin-bottom:0.5rem;">Type a subject and press Enter or comma to add</div>
+                        <div id="profileSubjectTagsWrap" style="display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.5rem;border:1px solid var(--border);border-radius:var(--radius-md);min-height:44px;cursor:text;" onclick="document.getElementById('profileSubjectsInput').focus()">
+                            <input type="text" id="profileSubjectsInput" style="border:none;outline:none;flex:1;min-width:120px;font-size:0.9rem;background:transparent;" placeholder="e.g. Algebra, Python, Guitar...">
+                        </div>
+                        <input type="hidden" id="profileSubjects">
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="profileRate">Hourly Rate (ZAR)</label>
-                            <input type="number" id="profileRate" class="form-input" min="1" placeholder="25">
+                            <input type="number" id="profileRate" class="form-input" min="1" placeholder="150">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="profileExperience">Experience</label>
@@ -116,9 +140,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Subjects / Specialties</label>
-                        <div class="form-hint" style="margin-bottom:0.5rem;">Separate with commas - e.g. English, Java, Guitar</div>
-                        <input type="text" id="profileSubjects" class="form-input" placeholder="English, Maths, Guitar...">
+                        <label class="form-label" for="profileQualSearch">Highest Qualification (NQF Level)</label>
+                        <div style="position:relative;">
+                            <input type="text" id="profileQualSearch" class="form-input" placeholder="Search qualification..." autocomplete="off" style="margin-bottom:0;">
+                            <div id="profileQualDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md);"></div>
+                        </div>
+                        <input type="hidden" id="profileQualification">
+                        <div id="profileQualSelected" style="margin-top:0.5rem;font-size:0.85rem;color:var(--purple);font-weight:600;"></div>
                     </div>
                     <button type="submit" id="saveTutorProfileBtn" class="btn btn-primary">Save Teaching Profile</button>
                 </form>
@@ -184,7 +212,17 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('profileBio').value = tutorObj.get('bio') || '';
             document.getElementById('profileRate').value = tutorObj.get('hourlyRate') || '';
             document.getElementById('profileExperience').value = tutorObj.get('experience') || '1-3';
-            document.getElementById('profileSubjects').value = (tutorObj.get('subjects') || []).join(', ');
+            document.getElementById('profileCategory').value = tutorObj.get('category') || '';
+            // Load subjects as tags
+            const savedSubjects = tutorObj.get('subjects') || [];
+            savedSubjects.forEach(s => addProfileSubjectTag(s));
+            // Load qualification
+            const savedQual = tutorObj.get('qualification') || '';
+            if (savedQual) {
+                document.getElementById('profileQualification').value = savedQual;
+                const match = PROFILE_NQF.find(q => q.value === savedQual);
+                if (match) document.getElementById('profileQualSelected').textContent = 'Selected: ' + match.label;
+            }
             const rating = tutorObj.get('rating');
             document.getElementById('profileRating').textContent = rating ? rating.toFixed(1) + ' \u2605' : '--';
             document.getElementById('profileLessons').textContent = tutorObj.get('totalLessons') || 0;
@@ -215,7 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const bio = document.getElementById('profileBio').value.trim();
             const rate = parseFloat(document.getElementById('profileRate').value);
             const experience = document.getElementById('profileExperience').value;
-            const subjects = document.getElementById('profileSubjects').value.split(',').map(s => s.trim()).filter(Boolean);
+            const category = document.getElementById('profileCategory').value;
+            const qualification = document.getElementById('profileQualification').value;
             if (!bio || isNaN(rate)) { showAlert('tutorProfileAlert', 'Please fill in bio and rate.', 'warning'); return; }
             setButtonLoading('saveTutorProfileBtn', true);
             try {
@@ -223,7 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     tutorObj.set('bio', bio);
                     tutorObj.set('hourlyRate', rate);
                     tutorObj.set('experience', experience);
-                    tutorObj.set('subjects', subjects);
+                    tutorObj.set('category', category);
+                    tutorObj.set('subjects', profileSubjectTags);
+                    tutorObj.set('qualification', qualification);
                     await tutorObj.save();
                 }
                 showAlert('tutorProfileAlert', 'Teaching profile updated.', 'success');
@@ -253,6 +294,102 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupPasswordToggles();
 });
+
+// NQF Qualifications
+const PROFILE_NQF = [
+    { value: 'nqf1', label: 'NQF 1 - General Education Certificate (Grade 9)' },
+    { value: 'nqf2', label: 'NQF 2 - Elementary Certificate (Grade 10)' },
+    { value: 'nqf3', label: 'NQF 3 - Intermediate Certificate (Grade 11)' },
+    { value: 'nqf4-nsc', label: 'NQF 4 - National Senior Certificate (NSC / Matric)' },
+    { value: 'nqf4-sc', label: 'NQF 4 - Senior Certificate' },
+    { value: 'nqf4-tech', label: 'NQF 4 - Technical Matric' },
+    { value: 'nqf5', label: 'NQF 5 - Higher Certificate' },
+    { value: 'nqf5-it', label: 'NQF 5 - Higher Certificate in IT' },
+    { value: 'nqf5-biz', label: 'NQF 5 - Higher Certificate in Business' },
+    { value: 'nqf6-dip', label: 'NQF 6 - National Diploma' },
+    { value: 'nqf6-eng', label: 'NQF 6 - National Diploma in Engineering' },
+    { value: 'nqf6-adv', label: 'NQF 6 - Advanced Certificate in HR' },
+    { value: 'nqf7-ba', label: 'NQF 7 - Bachelor of Arts (BA)' },
+    { value: 'nqf7-bsc', label: 'NQF 7 - Bachelor of Science (BSc)' },
+    { value: 'nqf7-bcom', label: 'NQF 7 - Bachelor of Commerce (BCom)' },
+    { value: 'nqf7-llb', label: 'NQF 7 - Bachelor of Laws (LLB)' },
+    { value: 'nqf7-adv-dip', label: 'NQF 7 - Advanced Diploma in Accounting' },
+    { value: 'nqf8-hons', label: 'NQF 8 - Honours Degree' },
+    { value: 'nqf8-pgdip', label: 'NQF 8 - Postgraduate Diploma in Education' },
+    { value: 'nqf9-msc', label: 'NQF 9 - Master of Science (MSc)' },
+    { value: 'nqf9-ma', label: 'NQF 9 - Master of Arts (MA)' },
+    { value: 'nqf9-mba', label: 'NQF 9 - MBA' },
+    { value: 'nqf9-med', label: 'NQF 9 - Master of Education (MEd)' },
+    { value: 'nqf10-phd', label: 'NQF 10 - PhD' },
+    { value: 'nqf10-dphil', label: 'NQF 10 - DPhil' },
+    { value: 'nqf10-dlitt', label: 'NQF 10 - DLitt' },
+    { value: 'nqf10-ded', label: 'NQF 10 - Doctor of Education (DEd)' },
+    { value: 'tvet-n1', label: 'TVET - N1' }, { value: 'tvet-n2', label: 'TVET - N2' },
+    { value: 'tvet-n3', label: 'TVET - N3' }, { value: 'tvet-n4', label: 'TVET - N4' },
+    { value: 'tvet-n5', label: 'TVET - N5' }, { value: 'tvet-n6', label: 'TVET - N6' },
+    { value: 'tvet-eng', label: 'TVET - Engineering Studies' },
+    { value: 'tvet-hosp', label: 'TVET - Hospitality Studies' },
+    { value: 'prof-ca', label: 'Professional - Chartered Accountant (CA)' },
+    { value: 'prof-atty', label: 'Professional - Attorney (Admitted)' },
+    { value: 'prof-med', label: 'Professional - Medical Doctor (MBChB)' },
+    { value: 'prof-eng', label: 'Professional - Professional Engineer (Pr.Eng)' },
+    { value: 'short-course', label: 'Short Course (Non-NQF accredited)' },
+    { value: 'other', label: 'Other Qualification' },
+];
+
+// Profile qualification search
+const pQualSearch = document.getElementById('profileQualSearch');
+const pQualDropdown = document.getElementById('profileQualDropdown');
+function renderProfileQualDropdown(filter) {
+    const filtered = PROFILE_NQF.filter(q => q.label.toLowerCase().includes(filter.toLowerCase()));
+    pQualDropdown.innerHTML = filtered.length === 0
+        ? '<div style="padding:0.75rem 1rem;color:var(--text-muted);font-size:0.88rem;">No results</div>'
+        : filtered.map(q => `<div class="pqual-opt" data-value="${q.value}" style="padding:0.65rem 1rem;cursor:pointer;font-size:0.88rem;border-bottom:1px solid var(--border-light);">${q.label}</div>`).join('');
+    pQualDropdown.querySelectorAll('.pqual-opt').forEach(opt => {
+        opt.addEventListener('mouseenter', () => opt.style.background = 'var(--purple-tint)');
+        opt.addEventListener('mouseleave', () => opt.style.background = '');
+        opt.addEventListener('click', () => {
+            document.getElementById('profileQualification').value = opt.dataset.value;
+            document.getElementById('profileQualSelected').textContent = 'Selected: ' + opt.textContent;
+            pQualSearch.value = '';
+            pQualDropdown.style.display = 'none';
+        });
+    });
+    pQualDropdown.style.display = filtered.length ? 'block' : 'none';
+}
+pQualSearch.addEventListener('input', () => renderProfileQualDropdown(pQualSearch.value));
+pQualSearch.addEventListener('focus', () => renderProfileQualDropdown(pQualSearch.value));
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('#profileQualSearch') && !e.target.closest('#profileQualDropdown')) pQualDropdown.style.display = 'none';
+});
+
+// Profile subject tags
+const profileSubjectInput = document.getElementById('profileSubjectsInput');
+const profileSubjectWrap = document.getElementById('profileSubjectTagsWrap');
+let profileSubjectTags = [];
+function addProfileSubjectTag(val) {
+    val = val.trim();
+    if (!val || profileSubjectTags.includes(val)) return;
+    profileSubjectTags.push(val);
+    const tag = document.createElement('span');
+    tag.style.cssText = 'display:inline-flex;align-items:center;gap:0.3rem;background:var(--purple-tint);color:var(--purple);border-radius:20px;padding:0.2rem 0.6rem;font-size:0.82rem;font-weight:600;';
+    tag.innerHTML = val + '<button type="button" style="background:none;border:none;cursor:pointer;color:var(--purple);font-size:1rem;line-height:1;padding:0;" aria-label="Remove">&times;</button>';
+    tag.querySelector('button').addEventListener('click', () => {
+        profileSubjectTags = profileSubjectTags.filter(s => s !== val);
+        tag.remove();
+    });
+    profileSubjectWrap.insertBefore(tag, profileSubjectInput);
+    profileSubjectInput.value = '';
+}
+profileSubjectInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addProfileSubjectTag(profileSubjectInput.value); }
+    if (e.key === ',') { e.preventDefault(); addProfileSubjectTag(profileSubjectInput.value); }
+    if (e.key === 'Backspace' && !profileSubjectInput.value && profileSubjectTags.length) {
+        const last = profileSubjectTags.pop();
+        [...profileSubjectWrap.querySelectorAll('span')].find(s => s.textContent.startsWith(last))?.remove();
+    }
+});
+profileSubjectInput.addEventListener('blur', () => { if (profileSubjectInput.value.trim()) addProfileSubjectTag(profileSubjectInput.value); });
 
 </script>
 </body>

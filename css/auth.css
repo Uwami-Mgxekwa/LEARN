@@ -2,9 +2,13 @@
    Auth Pages — Login / Register / Reset / Apply
 =================================== */
 
+html, body { overflow-x: hidden; max-width: 100%; }
+
 .auth-page {
     min-height: 100vh;
     display: flex;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* --- Left branding panel --- */
@@ -215,8 +219,12 @@
 @media (max-width: 768px) {
     .auth-form-panel { padding: 2rem 1.5rem; }
     .auth-form-title { font-size: 1.6rem; }
+    .auth-form-container { width: 100%; }
 }
 @media (max-width: 480px) {
     .auth-form-panel { padding: 1.5rem 1rem; }
-    .auth-form-container { max-width: 100%; }
+    .auth-form-container { max-width: 100%; width: 100%; }
+    .form-row { flex-direction: column; }
+    .auth-success { padding: 1rem 0; }
+    .auth-success h2 { font-size: 1.4rem; }
 }

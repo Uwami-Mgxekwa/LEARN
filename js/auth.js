@@ -31,9 +31,26 @@ async function loginUser(email, password) {
     try {
         const user = await Parse.User.logIn(email, password);
         const role = user.get("role") || 'student';
+
+        // Block tutors who haven't been approved yet
+        if (role === 'tutor') {
+            const Tutor = Parse.Object.extend("Tutor");
+            const query = new Parse.Query(Tutor);
+            query.equalTo("userId", user.id);
+            const tutorRecord = await query.first().catch(() => null);
+            const status = tutorRecord ? tutorRecord.get("status") : "pending";
+
+            if (status !== "approved") {
+                await Parse.User.logOut();
+                if (status === "rejected") {
+                    return { success: false, error: "Your application was not successful. Please contact support for more information." };
+                }
+                return { success: false, error: "Your application is still under review. You will be notified via email or WhatsApp/SMS once approved." };
+            }
+        }
+
         return { success: true, user, role };
     } catch (error) {
-        // Map common Parse error codes to friendly messages if needed
         return { success: false, error: error.message };
     }
 }
@@ -60,6 +77,7 @@ async function submitTutorApplication(data) {
         user.set("firstName", data.firstName);
         user.set("lastName", data.lastName);
         user.set("role", "tutor");
+        user.set("approved", false); // blocked until admin approves
         
         await user.signUp();
 
@@ -67,17 +85,31 @@ async function submitTutorApplication(data) {
         const Tutor = Parse.Object.extend("Tutor");
         const tutor = new Tutor();
         tutor.set("user", user);
+        tutor.set("userId", user.id);
         tutor.set("firstName", data.firstName);
         tutor.set("lastName", data.lastName);
+        tutor.set("email", data.email);
+        tutor.set("phone", data.phone || '');
         tutor.set("bio", data.bio);
         tutor.set("hourlyRate", parseFloat(data.hourlyRate));
         tutor.set("status", "pending");
         tutor.set("rating", 0);
         tutor.set("totalLessons", 0);
+        tutor.set("category", data.category || '');
+        tutor.set("subjects", data.subjects || []);
+        tutor.set("experience", data.experience || '');
+        tutor.set("qualification", data.qualification || '');
+        if (data.docId)    tutor.set("docId", data.docId._url || data.docId);
+        if (data.docQual)  tutor.set("docQual", data.docQual._url || data.docQual);
+        if (data.docCv)    tutor.set("docCv", data.docCv._url || data.docCv);
+        if (data.docExtra) tutor.set("docExtra", data.docExtra._url || data.docExtra);
         
         await tutor.save();
 
-        return { success: true, user };
+        // Log out immediately — they cannot access the platform until approved
+        await Parse.User.logOut();
+
+        return { success: true };
     } catch (error) {
         return { success: false, error: error.message };
     }
@@ -105,9 +137,15 @@ async function logoutUser() {
         if (typeof Parse !== 'undefined') {
             await Parse.User.logOut();
         }
-        window.location.href = '/';
+        // Redirect relative to current page depth
+        const depth = (window.location.pathname.match(/\//g) || []).length - 1;
+        const prefix = depth <= 1 ? './' : depth === 2 ? '../../' : '../../../';
+        window.location.href = prefix + 'index.html';
         return { success: true };
     } catch (error) {
+        const depth = (window.location.pathname.match(/\//g) || []).length - 1;
+        const prefix = depth <= 1 ? './' : depth === 2 ? '../../' : '../../../';
+        window.location.href = prefix + 'index.html';
         return { success: false, error: error.message };
     }
 }

@@ -98,6 +98,7 @@
                         <div class="step-dot active" id="dot1"></div>
                         <div class="step-dot" id="dot2"></div>
                         <div class="step-dot" id="dot3"></div>
+                        <div class="step-dot" id="dot4"></div>
                     </div>
 
                     <!-- Alert Container -->
@@ -113,25 +114,25 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label" for="tutorFirstName">First Name</label>
-                                    <input type="text" id="tutorFirstName" class="form-input" placeholder="Jane"
+                                    <input type="text" id="tutorFirstName" class="form-input" placeholder="Nthabiseng"
                                         autocomplete="given-name" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="tutorLastName">Last Name</label>
-                                    <input type="text" id="tutorLastName" class="form-input" placeholder="Smith"
+                                    <input type="text" id="tutorLastName" class="form-input" placeholder="Mgxekwa"
                                         autocomplete="family-name" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="tutorEmail">Email Address</label>
-                                <input type="email" id="tutorEmail" class="form-input" placeholder="jane@example.com"
+                                <input type="email" id="tutorEmail" class="form-input" placeholder="nthabiseng@example.co.za"
                                     autocomplete="email" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="tutorPhone">Phone Number</label>
-                                <input type="tel" id="tutorPhone" class="form-input" placeholder="+1 (555) 000-0000"
+                                <label class="form-label" for="tutorPhone">Cell Number</label>
+                                <input type="tel" id="tutorPhone" class="form-input" placeholder="+27 43 582 4076"
                                     autocomplete="tel">
                                 <div class="form-hint">Optional - for verification purposes</div>
                             </div>
@@ -181,9 +182,34 @@
 
                         <!-- Step 2: Professional Info -->
                         <div id="step2" style="display: none;">
-                            <h3
-                                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
+                            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
                                 Professional Details</h3>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorCategory">Teaching Category</label>
+                                <select id="tutorCategory" class="form-input" required>
+                                    <option value="" disabled selected>What do you teach?</option>
+                                    <option value="languages">Languages (English, Zulu, Afrikaans, etc.)</option>
+                                    <option value="mathematics">Mathematics &amp; Statistics</option>
+                                    <option value="sciences">Natural Sciences (Physics, Chemistry, Biology)</option>
+                                    <option value="technology">Technology &amp; Coding (Python, Java, Web Dev)</option>
+                                    <option value="business">Business &amp; Accounting</option>
+                                    <option value="arts">Arts, Music &amp; Drama</option>
+                                    <option value="humanities">Humanities (History, Geography, Life Orientation)</option>
+                                    <option value="trades">Trades &amp; Vocational Skills</option>
+                                    <option value="fitness">Fitness &amp; Wellness</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="tutorSubjectsInput">Specialties / Subjects</label>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Type a subject and press Enter or comma to add it</div>
+                                <div id="subjectTagsWrap" style="display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.5rem;border:1px solid var(--border);border-radius:var(--radius-md);min-height:44px;cursor:text;" onclick="document.getElementById('tutorSubjectsInput').focus()">
+                                    <input type="text" id="tutorSubjectsInput" style="border:none;outline:none;flex:1;min-width:120px;font-size:0.9rem;background:transparent;" placeholder="e.g. Algebra, Python, Guitar...">
+                                </div>
+                                <input type="hidden" id="tutorSubjectsHidden">
+                            </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="tutorExperience">Teaching Experience</label>
@@ -198,66 +224,94 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label">Specialties</label>
-                                <div class="form-hint" style="margin-bottom: 0.75rem;">Select all that apply</div>
-                                <div class="qualifications-list" id="specialtiesContainer">
-                                    <span class="qualification-tag" data-value="conversation">Conversation</span>
-                                    <span class="qualification-tag" data-value="business">Business English</span>
-                                    <span class="qualification-tag" data-value="ielts">IELTS Prep</span>
-                                    <span class="qualification-tag" data-value="toefl">TOEFL Prep</span>
-                                    <span class="qualification-tag" data-value="grammar">Grammar</span>
-                                    <span class="qualification-tag" data-value="pronunciation">Pronunciation</span>
-                                    <span class="qualification-tag" data-value="writing">Writing</span>
-                                    <span class="qualification-tag" data-value="kids">Kids English</span>
-                                    <span class="qualification-tag" data-value="academic">Academic English</span>
+                                <label class="form-label" for="qualSearch">Highest Qualification (NQF Level)</label>
+                                <div style="position:relative;">
+                                    <input type="text" id="qualSearch" class="form-input" placeholder="Search qualification..." autocomplete="off" style="margin-bottom:0;">
+                                    <div id="qualDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md);">
+                                    </div>
                                 </div>
+                                <input type="hidden" id="tutorQualification">
+                                <div id="qualSelected" style="margin-top:0.5rem;font-size:0.85rem;color:var(--purple);font-weight:600;"></div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="tutorRate">Hourly Rate (ZAR)</label>
-                                <input type="number" id="tutorRate" class="form-input" placeholder="25" min="5"
-                                    max="200" required>
+                                <input type="number" id="tutorRate" class="form-input" placeholder="150" min="5" max="5000" required>
                                 <div class="form-hint">Platform takes a 20% commission per lesson</div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Qualifications</label>
-                                <div class="qualifications-list" id="qualificationsContainer">
-                                    <span class="qualification-tag" data-value="tefl">TEFL</span>
-                                    <span class="qualification-tag" data-value="tesol">TESOL</span>
-                                    <span class="qualification-tag" data-value="celta">CELTA</span>
-                                    <span class="qualification-tag" data-value="delta">DELTA</span>
-                                    <span class="qualification-tag" data-value="degree">University Degree</span>
-                                    <span class="qualification-tag" data-value="native">Native Speaker</span>
-                                    <span class="qualification-tag" data-value="c1-certified">C1 Certified</span>
-                                    <span class="qualification-tag" data-value="c2-certified">C2 Certified</span>
-                                </div>
                             </div>
 
                             <div style="display: flex; gap: 1rem;">
                                 <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(1)">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round">
-                                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                                     Back
                                 </button>
-                                <button type="button" class="btn btn-primary btn-lg" style="flex:2"
-                                    onclick="goToStep(3)">
+                                <button type="button" class="btn btn-primary btn-lg" style="flex:2" onclick="goToStep(3)">
                                     Continue
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Step 3: Bio & Submit -->
+                        <!-- Step 3: Documents -->
                         <div id="step3" style="display: none;">
-                            <h3
-                                style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">
-                                About You</h3>
+                            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text-primary);">Supporting Documents</h3>
+                            <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.25rem;">Upload clear scans or photos. Accepted formats: PDF, JPG, PNG (max 5MB each).</p>
+
+                            <div class="form-group">
+                                <label class="form-label">ID / Passport <span style="color:var(--error);">*</span></label>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">South African ID book, smart ID card, or passport — scanned or photographed clearly</div>
+                                <label class="file-upload-label" for="docId" id="docIdLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span id="docIdText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload ID / Passport</span>
+                                </label>
+                                <input type="file" id="docId" accept=".pdf,.jpg,.jpeg,.png" style="display:none;" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Qualification Certificate <span style="color:var(--error);">*</span></label>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Your highest qualification — degree, diploma, matric certificate, etc.</div>
+                                <label class="file-upload-label" for="docQual" id="docQualLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span id="docQualText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload Qualification Certificate</span>
+                                </label>
+                                <input type="file" id="docQual" accept=".pdf,.jpg,.jpeg,.png" style="display:none;" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">CV / Resume <span style="color:var(--error);">*</span></label>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Your most recent CV — PDF preferred</div>
+                                <label class="file-upload-label" for="docCv" id="docCvLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span id="docCvText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload CV / Resume</span>
+                                </label>
+                                <input type="file" id="docCv" accept=".pdf,.jpg,.jpeg,.png" style="display:none;" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Additional Certifications <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Any extra certificates relevant to what you teach</div>
+                                <label class="file-upload-label" for="docExtra" id="docExtraLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                    <span id="docExtraText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload (optional)</span>
+                                </label>
+                                <input type="file" id="docExtra" accept=".pdf,.jpg,.jpeg,.png" style="display:none;">
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(2)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                                    Back
+                                </button>
+                                <button type="button" class="btn btn-primary btn-lg" style="flex:2" onclick="goToStep(4)">
+                                    Continue
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Bio & Submit -->
+                        <div id="step4" style="display: none;">
+                            <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--text-primary);">About You</h3>
 
                             <div class="form-group">
                                 <label class="form-label" for="tutorBio">Bio / Introduction</label>
@@ -271,10 +325,7 @@
                                 <label class="form-check">
                                     <input type="checkbox" id="tutorAgreeTerms" required>
                                     <span class="form-check-label">
-                                        I agree to the <a href="#" onclick="event.preventDefault()">Terms of
-                                            Service</a>, <a href="#" onclick="event.preventDefault()">Privacy
-                                            Policy</a>, and <a href="#" onclick="event.preventDefault()">Tutor
-                                            Agreement</a>
+                                        I agree to the <a href="#" onclick="event.preventDefault()">Terms of Service</a>, <a href="#" onclick="event.preventDefault()">Privacy Policy</a>, and <a href="#" onclick="event.preventDefault()">Tutor Agreement</a>
                                     </span>
                                 </label>
                             </div>
@@ -283,18 +334,14 @@
                                 <label class="form-check">
                                     <input type="checkbox" id="tutorAgreeCommission" required>
                                     <span class="form-check-label">
-                                        I understand and agree that the platform takes a 20% commission from each lesson
-                                        payment
+                                        I understand and agree that the platform takes a 20% commission from each lesson payment
                                     </span>
                                 </label>
                             </div>
 
                             <div style="display: flex; gap: 1rem;">
-                                <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(2)">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round">
-                                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                                    </svg>
+                                <button type="button" class="btn btn-ghost btn-lg" style="flex:1" onclick="goToStep(3)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
                                     Back
                                 </button>
                                 <button type="submit" id="applyBtn" class="btn btn-primary btn-lg" style="flex:2">
@@ -342,6 +389,122 @@
         let selectedSpecialties = [];
         let selectedQualifications = [];
 
+        // NQF Qualifications list
+        const NQF_QUALIFICATIONS = [
+            { value: 'nqf1', label: 'NQF 1 - General Education Certificate (Grade 9)' },
+            { value: 'nqf2', label: 'NQF 2 - Elementary Certificate (Grade 10)' },
+            { value: 'nqf3', label: 'NQF 3 - Intermediate Certificate (Grade 11)' },
+            { value: 'nqf4-nsc', label: 'NQF 4 - National Senior Certificate (NSC / Matric)' },
+            { value: 'nqf4-sc', label: 'NQF 4 - Senior Certificate' },
+            { value: 'nqf4-tech', label: 'NQF 4 - Technical Matric' },
+            { value: 'nqf5', label: 'NQF 5 - Higher Certificate' },
+            { value: 'nqf5-it', label: 'NQF 5 - Higher Certificate in IT' },
+            { value: 'nqf5-biz', label: 'NQF 5 - Higher Certificate in Business' },
+            { value: 'nqf6-dip', label: 'NQF 6 - National Diploma' },
+            { value: 'nqf6-eng', label: 'NQF 6 - National Diploma in Engineering' },
+            { value: 'nqf6-adv', label: 'NQF 6 - Advanced Certificate in HR' },
+            { value: 'nqf7-ba', label: 'NQF 7 - Bachelor of Arts (BA)' },
+            { value: 'nqf7-bsc', label: 'NQF 7 - Bachelor of Science (BSc)' },
+            { value: 'nqf7-bcom', label: 'NQF 7 - Bachelor of Commerce (BCom)' },
+            { value: 'nqf7-llb', label: 'NQF 7 - Bachelor of Laws (LLB)' },
+            { value: 'nqf7-adv-dip', label: 'NQF 7 - Advanced Diploma in Accounting' },
+            { value: 'nqf8-hons', label: 'NQF 8 - Honours Degree (BSc Hons, BA Hons, etc.)' },
+            { value: 'nqf8-pgdip', label: 'NQF 8 - Postgraduate Diploma in Education' },
+            { value: 'nqf9-msc', label: 'NQF 9 - Master of Science (MSc)' },
+            { value: 'nqf9-ma', label: 'NQF 9 - Master of Arts (MA)' },
+            { value: 'nqf9-mba', label: 'NQF 9 - Master of Business Administration (MBA)' },
+            { value: 'nqf9-med', label: 'NQF 9 - Master of Education (MEd)' },
+            { value: 'nqf10-phd', label: 'NQF 10 - Doctor of Philosophy (PhD)' },
+            { value: 'nqf10-dphil', label: 'NQF 10 - Doctor of Philosophy (DPhil)' },
+            { value: 'nqf10-dlitt', label: 'NQF 10 - Doctor of Literature (DLitt)' },
+            { value: 'nqf10-ded', label: 'NQF 10 - Doctor of Education (DEd)' },
+            { value: 'tvet-n1', label: 'TVET - N1 Certificate' },
+            { value: 'tvet-n2', label: 'TVET - N2 Certificate' },
+            { value: 'tvet-n3', label: 'TVET - N3 Certificate' },
+            { value: 'tvet-n4', label: 'TVET - N4 Certificate' },
+            { value: 'tvet-n5', label: 'TVET - N5 Certificate' },
+            { value: 'tvet-n6', label: 'TVET - N6 Certificate' },
+            { value: 'tvet-eng', label: 'TVET - Engineering Studies' },
+            { value: 'tvet-hosp', label: 'TVET - Hospitality Studies' },
+            { value: 'prof-ca', label: 'Professional - Chartered Accountant (CA)' },
+            { value: 'prof-atty', label: 'Professional - Attorney (Admitted)' },
+            { value: 'prof-med', label: 'Professional - Medical Doctor (MBChB)' },
+            { value: 'prof-eng', label: 'Professional - Professional Engineer (Pr.Eng)' },
+            { value: 'short-course', label: 'Short Course (Non-NQF accredited)' },
+            { value: 'other', label: 'Other Qualification' },
+        ];
+
+        // Qualification search dropdown
+        const qualSearch = document.getElementById('qualSearch');
+        const qualDropdown = document.getElementById('qualDropdown');
+        const qualHidden = document.getElementById('tutorQualification');
+        const qualSelected = document.getElementById('qualSelected');
+
+        function renderQualDropdown(filter) {
+            const filtered = NQF_QUALIFICATIONS.filter(q => q.label.toLowerCase().includes(filter.toLowerCase()));
+            if (filtered.length === 0) {
+                qualDropdown.innerHTML = '<div style="padding:0.75rem 1rem;color:var(--text-muted);font-size:0.88rem;">No results found</div>';
+            } else {
+                qualDropdown.innerHTML = filtered.map(q =>
+                    `<div class="qual-option" data-value="${q.value}" style="padding:0.65rem 1rem;cursor:pointer;font-size:0.88rem;border-bottom:1px solid var(--border-light);">${q.label}</div>`
+                ).join('');
+                qualDropdown.querySelectorAll('.qual-option').forEach(opt => {
+                    opt.addEventListener('mouseenter', () => opt.style.background = 'var(--purple-tint)');
+                    opt.addEventListener('mouseleave', () => opt.style.background = '');
+                    opt.addEventListener('click', () => {
+                        qualHidden.value = opt.dataset.value;
+                        qualSelected.textContent = 'Selected: ' + opt.textContent;
+                        qualSearch.value = '';
+                        qualDropdown.style.display = 'none';
+                    });
+                });
+            }
+            qualDropdown.style.display = 'block';
+        }
+
+        qualSearch.addEventListener('input', () => renderQualDropdown(qualSearch.value));
+        qualSearch.addEventListener('focus', () => renderQualDropdown(qualSearch.value));
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#qualSearch') && !e.target.closest('#qualDropdown')) {
+                qualDropdown.style.display = 'none';
+            }
+        });
+
+        // Subject tag input
+        const subjectInput = document.getElementById('tutorSubjectsInput');
+        const subjectWrap = document.getElementById('subjectTagsWrap');
+        const subjectHidden = document.getElementById('tutorSubjectsHidden');
+        let subjectTags = [];
+
+        function addSubjectTag(val) {
+            val = val.trim();
+            if (!val || subjectTags.includes(val)) return;
+            subjectTags.push(val);
+            const tag = document.createElement('span');
+            tag.style.cssText = 'display:inline-flex;align-items:center;gap:0.3rem;background:var(--purple-tint);color:var(--purple);border-radius:20px;padding:0.2rem 0.6rem;font-size:0.82rem;font-weight:600;';
+            tag.innerHTML = val + '<button type="button" style="background:none;border:none;cursor:pointer;color:var(--purple);font-size:1rem;line-height:1;padding:0;" aria-label="Remove">&times;</button>';
+            tag.querySelector('button').addEventListener('click', () => {
+                subjectTags = subjectTags.filter(s => s !== val);
+                tag.remove();
+                subjectHidden.value = subjectTags.join(',');
+            });
+            subjectWrap.insertBefore(tag, subjectInput);
+            subjectHidden.value = subjectTags.join(',');
+            subjectInput.value = '';
+        }
+
+        subjectInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); addSubjectTag(subjectInput.value); }
+            if (e.key === ',') { e.preventDefault(); addSubjectTag(subjectInput.value); }
+            if (e.key === 'Backspace' && !subjectInput.value && subjectTags.length) {
+                const last = subjectTags[subjectTags.length - 1];
+                subjectTags.pop();
+                subjectWrap.querySelectorAll('span').forEach(s => { if (s.textContent.startsWith(last)) s.remove(); });
+                subjectHidden.value = subjectTags.join(',');
+            }
+        });
+        subjectInput.addEventListener('blur', () => { if (subjectInput.value.trim()) addSubjectTag(subjectInput.value); });
+
         // Step navigation
         function goToStep(step) {
             hideAlert('applyAlert');
@@ -355,12 +518,13 @@
             document.getElementById('step1').style.display = 'none';
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'none';
 
             // Show target step
             document.getElementById(`step${step}`).style.display = 'block';
 
             // Update dots
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const dot = document.getElementById(`dot${i}`);
                 dot.classList.remove('active', 'completed');
                 if (i < step) dot.classList.add('completed');
@@ -406,20 +570,37 @@
 
             if (currentStep === 2) {
                 let valid = true;
-
-                if (!document.getElementById('tutorExperience').value) {
-                    showFieldError('tutorExperience', 'Please select your experience');
+                if (!document.getElementById('tutorCategory').value) {
+                    showFieldError('tutorCategory', 'Please select a teaching category');
                     valid = false;
                 }
-                if (selectedSpecialties.length === 0) {
-                    showAlert('applyAlert', 'Please select at least one specialty.', 'warning');
+                if (subjectTags.length === 0) {
+                    showAlert('applyAlert', 'Please add at least one subject or specialty.', 'warning');
+                    valid = false;
+                }
+                if (!document.getElementById('tutorExperience').value) {
+                    showFieldError('tutorExperience', 'Please select your experience');
                     valid = false;
                 }
                 if (!document.getElementById('tutorRate').value || parseFloat(document.getElementById('tutorRate').value) < 5) {
                     showFieldError('tutorRate', 'Minimum R5/hour');
                     valid = false;
                 }
+                return valid;
+            }
 
+            if (currentStep === 3) {
+                let valid = true;
+                if (!document.getElementById('docId').files[0]) {
+                    showAlert('applyAlert', 'Please upload your ID or Passport.', 'warning');
+                    valid = false;
+                } else if (!document.getElementById('docQual').files[0]) {
+                    showAlert('applyAlert', 'Please upload your Qualification Certificate.', 'warning');
+                    valid = false;
+                } else if (!document.getElementById('docCv').files[0]) {
+                    showAlert('applyAlert', 'Please upload your CV / Resume.', 'warning');
+                    valid = false;
+                }
                 return valid;
             }
 
@@ -427,33 +608,23 @@
         }
 
         // Tag selection for specialties
-        document.getElementById('specialtiesContainer').addEventListener('click', (e) => {
-            const tag = e.target.closest('.qualification-tag');
-            if (!tag) return;
-
-            const value = tag.dataset.value;
-            tag.classList.toggle('selected');
-
-            if (selectedSpecialties.includes(value)) {
-                selectedSpecialties = selectedSpecialties.filter(s => s !== value);
-            } else {
-                selectedSpecialties.push(value);
-            }
-        });
+        // (replaced by subject tag input above)
 
         // Tag selection for qualifications
-        document.getElementById('qualificationsContainer').addEventListener('click', (e) => {
-            const tag = e.target.closest('.qualification-tag');
-            if (!tag) return;
+        // (replaced by qualification search dropdown above)
 
-            const value = tag.dataset.value;
-            tag.classList.toggle('selected');
-
-            if (selectedQualifications.includes(value)) {
-                selectedQualifications = selectedQualifications.filter(q => q !== value);
-            } else {
-                selectedQualifications.push(value);
-            }
+        // File upload label updates
+        ['docId', 'docQual', 'docCv', 'docExtra'].forEach(id => {
+            document.getElementById(id).addEventListener('change', function() {
+                const file = this.files[0];
+                const textEl = document.getElementById(id + 'Text');
+                const labelEl = document.getElementById(id + 'Label');
+                if (file) {
+                    textEl.textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+                    textEl.style.color = 'var(--success)';
+                    labelEl.style.borderColor = 'var(--success)';
+                }
+            });
         });
 
         // Form submit
@@ -462,7 +633,7 @@
             e.preventDefault();
             hideAlert('applyAlert');
 
-            // Validate step 3
+            // Validate step 4
             const bio = document.getElementById('tutorBio').value.trim();
             if (bio.length < 50) {
                 showFieldError('tutorBio', 'Bio must be at least 50 characters');
@@ -477,30 +648,61 @@
                 return;
             }
 
-            // Collect all data
-            const data = {
-                firstName: document.getElementById('tutorFirstName').value.trim(),
-                lastName: document.getElementById('tutorLastName').value.trim(),
-                email: document.getElementById('tutorEmail').value.trim(),
-                phone: document.getElementById('tutorPhone').value.trim(),
-                password: document.getElementById('tutorPassword').value,
-                experience: document.getElementById('tutorExperience').value,
-                specialties: selectedSpecialties,
-                qualifications: selectedQualifications,
-                hourlyRate: document.getElementById('tutorRate').value,
-                bio: bio
-            };
-
             setButtonLoading('applyBtn', true);
 
-            const result = await submitTutorApplication(data);
+            // Upload documents via Parse SDK
+            async function uploadFile(inputId) {
+                const file = document.getElementById(inputId).files[0];
+                if (!file) return null;
+                const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                const parseFile = new Parse.File(safeName, file);
+                try {
+                    await parseFile.save();
+                    return { url: () => parseFile.url(), _url: parseFile.url() };
+                } catch (e) {
+                    console.error('Upload error:', JSON.stringify(e), e.message, e.code);
+                    throw e;
+                }
+            }
 
-            if (result.success) {
-                document.getElementById('applyFormSection').style.display = 'none';
-                document.getElementById('applySuccess').style.display = 'block';
-                showToast('Application submitted!', 'success');
-            } else {
-                showAlert('applyAlert', result.error, 'error');
+            try {
+                const [docIdFile, docQualFile, docCvFile, docExtraFile] = await Promise.all([
+                    uploadFile('docId'),
+                    uploadFile('docQual'),
+                    uploadFile('docCv'),
+                    uploadFile('docExtra'),
+                ]);
+
+                const data = {
+                    firstName: document.getElementById('tutorFirstName').value.trim(),
+                    lastName: document.getElementById('tutorLastName').value.trim(),
+                    email: document.getElementById('tutorEmail').value.trim(),
+                    phone: document.getElementById('tutorPhone').value.trim(),
+                    password: document.getElementById('tutorPassword').value,
+                    category: document.getElementById('tutorCategory').value,
+                    subjects: subjectTags,
+                    experience: document.getElementById('tutorExperience').value,
+                    qualification: document.getElementById('tutorQualification').value,
+                    hourlyRate: document.getElementById('tutorRate').value,
+                    bio,
+                    docId: docIdFile,
+                    docQual: docQualFile,
+                    docCv: docCvFile,
+                    docExtra: docExtraFile,
+                };
+
+                const result = await submitTutorApplication(data);
+
+                if (result.success) {
+                    document.getElementById('applyFormSection').style.display = 'none';
+                    document.getElementById('applySuccess').style.display = 'block';
+                    showToast('Application submitted!', 'success');
+                } else {
+                    showAlert('applyAlert', result.error, 'error');
+                    setButtonLoading('applyBtn', false);
+                }
+            } catch (err) {
+                showAlert('applyAlert', 'Failed to upload documents. Please try again.', 'error');
                 setButtonLoading('applyBtn', false);
             }
         });
