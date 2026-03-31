@@ -187,7 +187,7 @@ function renderApplications() {
         const subjects = (app.get('subjects') || []).join(', ') || '-';
         const qual = app.get('qualification') || '-';
         const exp = app.get('experience') || '-';
-        const rate = app.get('hourlyRate') ? 'R' + app.get('hourlyRate') + '/hr' : '-';
+        const rate = app.get('hourlyRate') ? '$' + app.get('hourlyRate') + '/hr' : '-';
         const category = app.get('category') || '-';
         const createdAt = app.createdAt ? new Date(app.createdAt).toLocaleDateString('en-ZA') : '-';
 

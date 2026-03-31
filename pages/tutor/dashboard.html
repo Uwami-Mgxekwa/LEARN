@@ -218,7 +218,7 @@ async function loadDashboard(uid, profile) {
         document.getElementById('statUpcoming').textContent = upcoming.length;
 
         const totalEarnings = bookingData.reduce((sum, b) => sum + (b.price * 0.8), 0);
-        document.getElementById('statEarnings').textContent = 'R' + totalEarnings.toFixed(0);
+        document.getElementById('statEarnings').textContent = '$' + totalEarnings.toFixed(0);
 
         const list = document.getElementById('upcomingList');
         if (upcoming.length === 0) {

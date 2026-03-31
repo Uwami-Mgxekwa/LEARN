@@ -154,9 +154,9 @@ async function loadEarnings(uid) {
 function renderEarnings(bookings) {
     let totalNet = 0, totalCommission = 0;
     bookings.forEach(b => { totalNet += b.price * 0.8; totalCommission += b.price * 0.2; });
-    document.getElementById('totalEarned').textContent = 'R' + totalNet.toFixed(2);
-    document.getElementById('totalCommission').textContent = 'R' + totalCommission.toFixed(2);
-    document.getElementById('pendingPayout').textContent = 'R' + totalNet.toFixed(2);
+    document.getElementById('totalEarned').textContent = '$' + totalNet.toFixed(2);
+    document.getElementById('totalCommission').textContent = '$' + totalCommission.toFixed(2);
+    document.getElementById('pendingPayout').textContent = '$' + totalNet.toFixed(2);
     const tbody = document.getElementById('earningsBody');
     if (bookings.length === 0) {
         tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;">No earnings yet.</td></tr>';

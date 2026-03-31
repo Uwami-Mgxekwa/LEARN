@@ -114,27 +114,27 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label" for="tutorFirstName">First Name</label>
-                                    <input type="text" id="tutorFirstName" class="form-input" placeholder="Nthabiseng"
+                                    <input type="text" id="tutorFirstName" class="form-input" placeholder="John"
                                         autocomplete="given-name" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label" for="tutorLastName">Last Name</label>
-                                    <input type="text" id="tutorLastName" class="form-input" placeholder="Mgxekwa"
+                                    <input type="text" id="tutorLastName" class="form-input" placeholder="Doe"
                                         autocomplete="family-name" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="tutorEmail">Email Address</label>
-                                <input type="email" id="tutorEmail" class="form-input" placeholder="nthabiseng@example.co.za"
+                                <input type="email" id="tutorEmail" class="form-input" placeholder="you@example.com"
                                     autocomplete="email" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="tutorPhone">Cell Number</label>
-                                <input type="tel" id="tutorPhone" class="form-input" placeholder="+27 43 582 4076"
+                                <label class="form-label" for="tutorPhone">Phone Number</label>
+                                <input type="tel" id="tutorPhone" class="form-input" placeholder="555 123 4567"
                                     autocomplete="tel">
-                                <div class="form-hint">Optional - for verification purposes</div>
+                                <div class="form-hint">Optional â€” for verification purposes</div>
                             </div>
 
                             <div class="form-row">
@@ -224,7 +224,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="qualSearch">Highest Qualification (NQF Level)</label>
+                                <label class="form-label" for="qualSearch">Highest Qualification</label>
                                 <div style="position:relative;">
                                     <input type="text" id="qualSearch" class="form-input" placeholder="Search qualification..." autocomplete="off" style="margin-bottom:0;">
                                     <div id="qualDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md);">
@@ -235,8 +235,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="form-label" for="tutorRate">Hourly Rate (ZAR)</label>
-                                <input type="number" id="tutorRate" class="form-input" placeholder="150" min="5" max="5000" required>
+                                <label class="form-label" for="tutorRate">Hourly Rate (USD)</label>
+                                <input type="number" id="tutorRate" class="form-input" placeholder="25" min="1" max="500" required>
                                 <div class="form-hint">Platform takes a 20% commission per lesson</div>
                             </div>
 
@@ -259,7 +259,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">ID / Passport <span style="color:var(--error);">*</span></label>
-                                <div class="form-hint" style="margin-bottom:0.5rem;">South African ID book, smart ID card, or passport — scanned or photographed clearly</div>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">South African ID book, smart ID card, or passport ï¿½ scanned or photographed clearly</div>
                                 <label class="file-upload-label" for="docId" id="docIdLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                                     <span id="docIdText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload ID / Passport</span>
@@ -269,7 +269,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">Qualification Certificate <span style="color:var(--error);">*</span></label>
-                                <div class="form-hint" style="margin-bottom:0.5rem;">Your highest qualification — degree, diploma, matric certificate, etc.</div>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Your highest qualification ï¿½ degree, diploma, matric certificate, etc.</div>
                                 <label class="file-upload-label" for="docQual" id="docQualLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                                     <span id="docQualText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload Qualification Certificate</span>
@@ -279,7 +279,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">CV / Resume <span style="color:var(--error);">*</span></label>
-                                <div class="form-hint" style="margin-bottom:0.5rem;">Your most recent CV — PDF preferred</div>
+                                <div class="form-hint" style="margin-bottom:0.5rem;">Your most recent CV ï¿½ PDF preferred</div>
                                 <label class="file-upload-label" for="docCv" id="docCvLabel" style="display:flex;align-items:center;gap:0.75rem;padding:0.85rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-md);cursor:pointer;transition:border-color 0.2s;">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
                                     <span id="docCvText" style="font-size:0.88rem;color:var(--text-muted);">Click to upload CV / Resume</span>
@@ -377,10 +377,14 @@
     <script src="../../js/config.js"></script>
     <script src="../../js/auth.js"></script>
     <script src="../../js/utils.js"></script>
+    <script src="../../js/phone-picker.js"></script>
 
     <script>
         // Initialize Firebase
         initFirebase();
+
+        // Init phone picker with auto country detection
+        initPhonePicker('tutorPhone');
 
         // Current step
         let currentStep = 1;

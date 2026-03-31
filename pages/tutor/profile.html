@@ -72,11 +72,11 @@
                     <div class="form-row">
                         <div class="form-group">
                         <label class="form-label" for="profileFirstName">First Name</label>
-                        <input type="text" id="profileFirstName" class="form-input" placeholder="Nthabiseng" required>
+                        <input type="text" id="profileFirstName" class="form-input" placeholder="John" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="profileLastName">Last Name</label>
-                        <input type="text" id="profileLastName" class="form-input" placeholder="Mgxekwa" required>
+                        <input type="text" id="profileLastName" class="form-input" placeholder="Doe" required>
                     </div>
                     </div>
                     <div class="form-group">
@@ -84,8 +84,8 @@
                         <input type="email" id="profileEmailField" class="form-input" disabled style="opacity:0.6;cursor:not-allowed;">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="profilePhone">Cell Number (optional)</label>
-                        <input type="tel" id="profilePhone" class="form-input" placeholder="+27 43 582 4076">
+                        <label class="form-label" for="profilePhone">Phone Number (optional)</label>
+                        <input type="tel" id="profilePhone" class="form-input" placeholder="555 123 4567">
                     </div>
                     <button type="submit" id="saveProfileBtn" class="btn btn-primary">Save Changes</button>
                 </form>
@@ -125,8 +125,8 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label" for="profileRate">Hourly Rate (ZAR)</label>
-                            <input type="number" id="profileRate" class="form-input" min="1" placeholder="150">
+                            <label class="form-label" for="profileRate">Hourly Rate (USD)</label>
+                            <input type="number" id="profileRate" class="form-input" min="1" placeholder="25">
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="profileExperience">Experience</label>
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="profileQualSearch">Highest Qualification (NQF Level)</label>
+                        <label class="form-label" for="profileQualSearch">Highest Qualification</label>
                         <div style="position:relative;">
                             <input type="text" id="profileQualSearch" class="form-input" placeholder="Search qualification..." autocomplete="off" style="margin-bottom:0;">
                             <div id="profileQualDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);max-height:220px;overflow-y:auto;z-index:100;box-shadow:var(--shadow-md);"></div>
@@ -181,10 +181,12 @@
 <script src="../../js/config.js"></script>
 <script src="../../js/auth.js"></script>
 <script src="../../js/utils.js"></script>
+<script src="../../js/phone-picker.js"></script>
 <script src="tutor-nav.js"></script>
 <script defer>
 document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
+    initPhonePicker('profilePhone');
     auth.onAuthStateChanged(async (user) => {
         if (!user) { window.location.href = '../auth/login.html'; return; }
         const profile = await getUserProfile(user.id);
