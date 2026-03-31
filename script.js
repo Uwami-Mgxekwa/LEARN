@@ -199,14 +199,26 @@ updateFooterYear();
 // iOS Video Autoplay Fix
 // ===================================
 
-const heroVideo = document.querySelector('.hero-media-wrap video');
+const heroVideo = document.getElementById('heroVideo') || document.querySelector('.hero-media-wrap video');
 if (heroVideo) {
-    // Force play on iOS after user interaction if autoplay was blocked
-    heroVideo.play().catch(() => {
-        document.addEventListener('touchstart', () => {
-            heroVideo.play();
-        }, { once: true });
+    heroVideo.muted = true;
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    tryPlay();
+
+    // iOS requires a user gesture on first load — retry on any interaction
+    ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
+        document.addEventListener(evt, tryPlay, { once: true, passive: true });
     });
+
+    // Also retry when it becomes visible (fixes scroll-to-play on iOS)
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) tryPlay();
+        }, { threshold: 0.1 }).observe(heroVideo);
+    }
 }
 
 // ===================================

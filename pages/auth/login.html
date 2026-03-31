@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Login - LearnU</title>
     <meta name="description"
         content="Log in to your LearnU account to access lessons, manage bookings, and track your progress.">
@@ -158,7 +158,7 @@
         initFirebase();
 
         // ===================================
-        // DEV BYPASS â€” remove before launch
+        // DEV BYPASS — remove before launch
         // emeka@gmail.com / 12345
         // ===================================
         const DEV_EMAIL = 'emeka@gmail.com';
@@ -205,9 +205,9 @@
 
             if (hasErrors) return;
 
-            // DEV BYPASS â€” check dev credentials first
+            // DEV BYPASS — check dev credentials first
             if (devLogin(email, password)) {
-                showToast('Dev login â€” choose dashboard', 'info');
+                showToast('Dev login — choose dashboard', 'info');
                 // Show role picker for dev
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('loginAlert').className = '';

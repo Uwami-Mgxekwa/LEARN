@@ -137,15 +137,14 @@ async function logoutUser() {
         if (typeof Parse !== 'undefined') {
             await Parse.User.logOut();
         }
-        // Redirect relative to current page depth
-        const depth = (window.location.pathname.match(/\//g) || []).length - 1;
-        const prefix = depth <= 1 ? './' : depth === 2 ? '../../' : '../../../';
+        // Navigate to root index.html regardless of current depth
+        const parts = window.location.pathname.split('/').filter(Boolean);
+        const depth = parts.length > 0 && parts[parts.length - 1].includes('.') ? parts.length - 1 : parts.length;
+        const prefix = depth === 0 ? './' : '../'.repeat(depth);
         window.location.href = prefix + 'index.html';
         return { success: true };
     } catch (error) {
-        const depth = (window.location.pathname.match(/\//g) || []).length - 1;
-        const prefix = depth <= 1 ? './' : depth === 2 ? '../../' : '../../../';
-        window.location.href = prefix + 'index.html';
+        window.location.href = window.location.origin + '/index.html';
         return { success: false, error: error.message };
     }
 }

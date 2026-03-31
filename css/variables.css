@@ -68,3 +68,9 @@
     --transition-base: 0.25s ease;
     --transition-slow: 0.4s ease;
 }
+
+/* Global overflow guard — prevents horizontal scroll on all pages */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
