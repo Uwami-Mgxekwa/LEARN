@@ -1,9 +1,3 @@
-/*===========================================================================
-Welcome to your Cloud Code!
----------------------------------------------------------------------------
-In the next sections, you'll see examples of how Parse Cloud Code works.
-===========================================================================*/
-
 Parse.Cloud.define("hello", async (request) => {
     console.log("Hello from Cloud Code!");
     return "Hello from Cloud Code!";

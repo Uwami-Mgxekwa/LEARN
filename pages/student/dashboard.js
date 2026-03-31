@@ -285,7 +285,7 @@ function openBookingModal(tutor) {
                 <button class="slot-btn ${isFull ? 'full' : ''}" data-slot-id="${slot.id}" ${isFull ? 'disabled' : ''}>
                     <div class="slot-day">${slot.day}</div>
                     <div class="slot-time">${slot.time}</div>
-                    <div class="slot-meta ${metaClass}">${metaText} · R${slot.price}</div>
+                    <div class="slot-meta ${metaClass}">${metaText} · $${slot.price}</div>
                 </button>
             `;
         }).join('');
@@ -329,7 +329,7 @@ function showBookingConfirm() {
         </div>
         <div class="booking-summary-row">
             <span>Total</span>
-            <span>R${total}</span>
+            <span>$${total}</span>
         </div>
     `;
 }
