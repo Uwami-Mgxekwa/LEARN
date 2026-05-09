@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /pages/admin/
+Disallow: /pages/student/
+Disallow: /pages/tutor/
+Disallow: /pages/auth/login.html
+Disallow: /pages/auth/forgot-password.html
+
+# Allow indexing of public auth pages
+Allow: /pages/auth/register.html
+Allow: /pages/auth/tutor-apply.html
+
+Sitemap: https://www.learnwithlearn.com/sitemap.xml
