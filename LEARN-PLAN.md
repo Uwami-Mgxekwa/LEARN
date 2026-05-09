@@ -4,19 +4,21 @@ Revenue Plan
 Type: Two-Sided Marketplace Platform
 The platform connects C1 English students with qualified tutors.
 It manages:
+
+
 • Tutor applications and approvals
 • Student bookings
 • Video lesson access
 • Payment processing
 • Activity monitoring
-2. Revenue Model
+3. Revenue Model
 Commission-Based Only
 • Students pay automatically when booking a lesson.
 • The platform deducts a commission (e.g., 20%) from each payment.
 • The remaining amount is transferred to the tutor’s account.
 • No subscription plans for tutors or students.
 • All payments are processed via integrated gateways (e.g., PayPal).
-3. Monetization & Payment Plan
+4. Monetization & Payment Plan
 1. Lesson Booking Commissions
 • Each booking triggers automatic payment collection.
 • Commission (e.g., 20%) is deducted instantly.
