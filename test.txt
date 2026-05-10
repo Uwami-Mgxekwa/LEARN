@@ -1226,3 +1226,7 @@ update 693
 update 242
 update 694 
 update 243
+update 695 
+update 696 
+update 245
+update 697 
