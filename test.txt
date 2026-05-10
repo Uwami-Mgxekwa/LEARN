@@ -1731,3 +1731,5 @@ update 972
 update 494
 update 973 
 update 974 
+update 496
+update 975 
